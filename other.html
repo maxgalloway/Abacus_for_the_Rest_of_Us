@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <title>Calculator</title>
-        <link rel="stylesheet" type="text/css" href="style.css"/>    
+        <link rel="stylesheet" type="text/css" href="other.css"/>    
     </head>
     
     <body>
@@ -12,42 +12,36 @@
         <form><!-- a wrapper for the calculator -->
             
             <!-- the calculator's "screen" -->
-            <output name="out" id="out">0</output>
+            <div><output name="out" id="out">0</output></div>
             
-            <div><!-- Each contained number group will appear as a row -->
-                <div>
+                 <div>
                     <input type="button" value="7" class="number"/>
                     <input type="button" value="8" class="number"/>
                     <input type="button" value="9" class="number"/>
+                    <input type="button" value="+" class="operator"/>
                 </div>
 
                 <div>
                     <input type="button" value="4" class="number"/>
                     <input type="button" value="5" class="number"/>
                     <input type="button" value="6" class="number"/>
+                    <input type="button" value="-" class="operator"/>
                 </div>
 
                 <div>
                     <input type="button" value="1" class="number"/>
                     <input type="button" value="2" class="number"/>
                     <input type="button" value="3" class="number"/>
+                    <input type="button" value="x" class="operator"/>
+
                 </div>
 
                 <div>
                     <input type="button" value="C" id="clear"/>
                     <input type="button" value="0" class="number"/>
                     <input type="button" value="=" class="operator"/>
+                    <input type="button" value="/" class="operator"/>
                 </div>
-                
-            </div><!-- end number field -->
-            
-            <div id="operators"><!-- operators will appear as a column -->
-                
-                <input type="button" value="+" class="operator"/>
-                <input type="button" value="-" class="operator"/>
-                <input type="button" value="x" class="operator"/>
-                <input type="button" value="/" class="operator"/>
-            </div>
             
         </form><!-- end calculator -->
         
