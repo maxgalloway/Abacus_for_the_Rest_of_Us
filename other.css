@@ -3,3 +3,8 @@ form{
     border: red solid;
     width: 20%;
 }
+
+output {
+    display: block;
+    text-align: right;
+}

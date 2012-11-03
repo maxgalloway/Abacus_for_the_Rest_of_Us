@@ -21,7 +21,31 @@ output{
     border: black solid;
 }
 */
+
+form:before, form:after{
+    content: "";
+    display: table;
+}
+
+form:after{
+    clear:both;
+}
+
 form{
+    float: left;
     border: red solid;
-    width: 20%;
+    zoom:1;
+}
+
+form>div{
+    float: left;
+}
+
+form>div>input{
+    display: block;
+}
+
+output{
+    display: block;
+    text-align: right;
 }
