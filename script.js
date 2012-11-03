@@ -32,11 +32,11 @@ var calculator = new function(){
         }
     }
 
-//  clicking an operator will make the calculator perform an operation.
-
     var operators = document.getElementsByClassName('operator');
     
     for( var k = 0; k < operators.length; k++){
+        
+//      clicking an operator will make the calculator perform an operation.
 
         operators[k].onclick = function(){
             that.evaluate(this.value); // that=calc this=opp
