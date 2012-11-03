@@ -1,6 +1,6 @@
 //  The calculator class represents a four-function calculator.
-//  The class both defines and constructs the singleton calculator object.
-//        
+//  The following both defines and constructs the singleton calculator object.
+
 var calculator = new function(){
     
 //  What immediately follows would be the constructor in class-oriented
@@ -8,54 +8,49 @@ var calculator = new function(){
 //  the constructor.)
     
 //  First, initialize the calculator's instance variables
+
     this.tally = 0; // the last value output by a computation
     this.operator = '+'; // the current operator
     this.temp = 0; // the number being built by user input
     this.isClear = true; // tells whether the screen has been cleared
+    
+    var that = this; // use 'that' in places where 'this' is not in scope
 
 //  Second, run setup routine, in which page elements are bound to
-//  calculator methods. We will start by binding the numbers' click
+//  calculator methods. 
+//  We will start by binding the numbers' click
 //  event to the calculator's update method.
 
     var numbers = document.getElementsByClassName('number');
+    
     for (var i = 0; i < numbers.length; i++) {
 
 //      clicking a number will update the display and the temp variable
 
-        numbers[i].onclick = function(instance){
-            return function(){
-                
-//              Note that within the anonymous function, 'this' refers to the 
-//              button whose click element is being bound. 
-//              By using closures, the variable 'instance' refers to the
-//              calculator object.                
-                instance.update(this.value);
-            };
-        }(this);
+        numbers[i].onclick = function(){
+            that.update(this.value); // that=calc this=number
+        }
     }
 
 //  clicking an operator will make the calculator perform an operation.
+
     var operators = document.getElementsByClassName('operator');
+    
     for( var k = 0; k < operators.length; k++){
 
-        operators[k].onclick = function(instance){
-            return function(){
-                
-//              see above for the note about closure usage.
-                instance.evaluate(this.value);
-            };
-        }(this);
+        operators[k].onclick = function(){
+            that.evaluate(this.value); // that=calc this=opp
+        }
 
     }
 
 //  lastly, bind the clear function to the clear buttons' click event
-    document.getElementById('clear').onclick = function(instance){
-        return function() {
-            instance.reset(); // closures again
-        };
-    } (this);
+
+    document.getElementById('clear').onclick = function(){
+        that.reset(); // that=calc this=clear button
+    }
     
-//  This is the end of what would be the constructor. Now onto the 
+//  This is the end of the would-be constructor. Now onto the 
 //  instance methods!
     
 //  The output function sets the calculator's screen to the given value.
@@ -83,6 +78,7 @@ var calculator = new function(){
     this.evaluate = function(operate){
         
 //      Special condition if there has not been output yet.
+
         if( this.isClear ){
             this.tally = this.temp;
             this.isClear = false;
@@ -90,6 +86,7 @@ var calculator = new function(){
         } else {
             
 //          Peform the stored operation on tally and temp
+
             switch (this.operator){
 
                 case '+':
