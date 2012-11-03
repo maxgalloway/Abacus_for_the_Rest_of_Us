@@ -208,8 +208,8 @@ var calculator = new function(){
         
         if (!('getElementsByClassName' in document)){
             
-        // The following implementation is thanks to:
-        // http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-4
+//         The following implementation is thanks to:
+//         http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-4
         
             document.getElementsByClassName = function(className, parentElement) {
                 if (Prototype.BrowserFeatures.XPath) {
