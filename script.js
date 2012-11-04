@@ -3,128 +3,141 @@
 
 var calculator = new function(){
     
-//  that is an internal representation of the calculator.
+//  model pseudoclass is an internal representation of 
+//  the calculator's state.
+//  
 //  By defining it as a var inside the pseudoclass, it
 //  and its properties, and its methods are invisible 
-//  to the outside world.
-                
-    var that = {};
-    
-//  The calculator's init method takes only a dom node, screen.
-//  This screen will be accessed by the inner calculator, that,
-//  to display the numeric output.    
-    
-    this.init = function(screen){ 
+//  to the outside world.   
         
-//      to ensure that methods requiring the display are not fired without
-//      it first being initialized, all of that's methods and properties
-//      are defined in this function (which requires screen as a parameter)
+    var model = {
 
-        if( typeof screen === 'object'){
+        tally : 0, // running total since last clear
+
+        operator : '+', // last operator pressed
+
+        temp : 0, // number, as it entered by user
+
+        isClear : true, // flag indicates whether there has been output
         
-            that = {
+//      The evaluate function performs a computation. 
+//      First, it performs the stored operation on temp and tally.
+//      Then it stores the given operation for the next evaluation.
+//        
+//      Returns the state to show to user.
 
-                tally : 0, // the result of all operations since a clear
+        evaluate : function(operate){
 
-                operator : '+', // the last operator pressed
+//          Special condition if there has not been output yet.
 
-                temp : 0, // the number being entered by user
+            if( this.isClear ){
 
-                isClear : true, // a flag, indicated whether there has been output
+                this.tally = this.temp;
+                this.isClear = false;
 
-                display : screen, // init needs to be called bef
+            } else {
 
-//              The evaluate function performs a computation. 
-//              First, it performs the stored operation on temp and tally.
-//              Then it stores the given operation for the next evaluation.        
+//              Perform the stored operation on tally and temp
 
-                evaluate : function(operate){
+                switch (this.operator){
 
-//                  Special condition if there has not been output yet.
+                    case '+':
+                        this.tally += this.temp;
+                        break;
 
-                    if( this.isClear ){
+                    case '-':
+                        this.tally -= this.temp;
+                        break;
 
-                        this.tally = this.temp;
-                        this.isClear = false;
+                    case 'x':
+                        this.tally *= this.temp;
+                        break;
 
-                    } else {
+                    case '/':
+                        this.tally /= this.temp;
+                        break;
 
-//                  Perform the stored operation on tally and temp
-
-                        switch (this.operator){
-
-                            case '+':
-                                this.tally += this.temp;
-                                break;
-
-                            case '-':
-                                this.tally -= this.temp;
-                                break;
-
-                            case 'x':
-                                this.tally *= this.temp;
-                                break;
-
-                            case '/':
-                                this.tally /= this.temp;
-                                break;
-
-                        }
-                    }
-
-//                  In either case, update the display, and prepare for next input
-
-                    this.output(this.tally); // show the new tally
-                    this.temp = 0; // reset temp
-                    this.operator = operate; // get ready to perform the given operation
-                },
-
-//              The update function will take string representing a single digit, and 
-//              append it to what the user has entered so far, both on the screen and
-//              internally.        
-
-                update : function(lastDigit){
-                    this.temp = (10 * this.temp) + parseInt(lastDigit);
-                    this.output(this.temp);
-                },
-
-
-//              The output function sets the calculator's screen to the given value.
-//              The value, val should be a number. 
-
-                output : function ( val ){
-
-                    if( typeof val === 'number'){
-                        this.display.innerHTML = val;
-                    }
-                },
-
-//              The reset function clears the calculator's instance variables, and 
-//              wipes the screen.
-
-                reset : function(){
-                    this.tally = 0;
-                    this.operator = '+';
-                    this.temp = 0;
-                    this.isClear = true; 
-                    this.output(0);
                 }
+            }
 
-            }; // end that
+//          In either case, update the display, and prepare for next input
+
+            this.temp = 0; // reset temp
+            this.operator = operate; // get ready to perform the given operation
             
-        } // end check on screen
+            return this.tally; // user sees result of computation
+        },
+
+//      The update function will take string representing a single digit, and 
+//      append it to what the user has entered so far, both on the screen and
+//      internally.
+//      Returns the state to show to user.        
+
+        update : function(lastDigit){
+            this.temp = (10 * this.temp) + parseInt(lastDigit);
+            return this.temp; // user sees number entered thus far
+        },
+
+
+//      The reset function clears the calculator's instance variables, and 
+//      wipes the screen.
+
+        reset : function(){
+            this.tally = 0;
+            this.operator = '+';
+            this.temp = 0;
+            this.isClear = true; 
+            return 0;
+        }
+
+    }; // end model
+    
+//  view is the representation of the screen. 
+    
+    var view = {
         
-}; // end init
+//      the object holding the output.
+        
+        display : {innerHTML : "0"}, 
+        
+//      method to set display to given number
+        
+        output : function( val ){ 
+            
+            if( typeof val === 'number' ){
+                
+                this.display.innerHTML = val;
+            }
+        },
+        
+//      Sets sets given object to be the new display. 
+//      Copies the old output into new display.
+        
+        setDisplay : function( newScreen ){ // function
+            
+            if( typeof newScreen === 'object' ){
+                
+                newScreen.innerHTML = this.display.innerHTML;
+                
+                this.display = newScreen;
+            }
+        }
+    }; // end view
 
 //  These are the calculator's publicly facing methods.
+//  They should be consided the controller.
 
 //  Enter number is called when a user presses a digit, and takes that 
 //  digit as a param. If possible, enterNumber will pass that digit 
 //  to the inner calculator's update method.
 
     this.enterNumber = function(num){
-        if( 'update' in that ){
-            that.update(num);
+        
+        
+        if( 'update' in model ){
+            
+//          Pass response from model's update method to the view
+            view.output( model.update(num) );
         }
     };
 
@@ -133,8 +146,11 @@ var calculator = new function(){
 //  to the inner calculator's evaluate method.
 
     this.enterOperator = function(opp){
-        if( 'evaluate' in that ){
-            that.evaluate(opp);
+        
+        if( 'evaluate' in model ){
+            
+//          Pass response from model's evaluate method to the view            
+            view.output( model.evaluate(opp) );
         }
     };
  
@@ -143,9 +159,20 @@ var calculator = new function(){
 //  reset method.
   
     this.clear = function(){
-        if( 'reset' in that ){
-            that.reset();
+        
+        if( 'reset' in model ){
+            
+//          Pass response from model's reset method to the view            
+            view.output( model.reset() );
         }
+    };
+    
+//  Set Display takes an object, and set it to be the 
+//  Calculator's new output field.
+    
+    this.setDisplay = function( obj ){
+        
+      view.setDisplay(obj);  
     };
     
 }; // end calculator definition
@@ -169,7 +196,7 @@ var calculator = new function(){
 //  Start by calling the calcuator's init method, passing
 //  in an output element to be the display.
 
-    calculator.init(document.getElementById('out'));
+    calculator.setDisplay(document.getElementById('out'));
     
  
 //  Move onto binding the numbers' click
