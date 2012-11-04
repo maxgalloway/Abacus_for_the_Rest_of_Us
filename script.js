@@ -236,23 +236,26 @@ var calculator = new function(){
         if (!('getElementsByClassName' in document)){
             
 //         The following implementation is thanks to:
-//         http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-4
+//         http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-3
         
-            document.getElementsByClassName = function(className, parentElement) {
-                if (Prototype.BrowserFeatures.XPath) {
-                    var q = ".//*[contains(concat(' ', @class, ' '), ' " + className + " ')]";
-                    return document._getElementsByXPath(q, parentElement);
-                } else {
-                    var children = ($(parentElement) || document.body).getElementsByTagName('*');
-                    var elements = [], child;
-                    for (var i = 0, length = children.length; i < length; i++) {
-                    child = children[i];
-                    if (Element.hasClassName(child, className))
-                        elements.push(Element.extend(child));
+            document.getElementsByClassName = function (searchClass,node,tag) {
+                var classElements = new Array();
+                if ( node == null )
+                    node = document;
+                if ( tag == null )
+                    tag = '*';
+                var els = node.getElementsByTagName(tag);
+                var elsLen = els.length;
+                var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+                for (i = 0, j = 0; i < elsLen; i++) {
+                    if ( pattern.test(els[i].className) ) {
+                    classElements[j] = els[i];
+                    j++;
                     }
-                    return elements;
                 }
-            }; 
+                return classElements;
+            };
+
             // end implementation
             
       } // end if
