@@ -204,7 +204,7 @@ var calculator = (function() {
 		var els, elsLen, pattern, j;
 
 		/*jslint browser:true */
-
+		
 		if (typeof document.getElementsByClassName !== 'function') {
 
 			// The following implementation is thanks to:
@@ -238,6 +238,22 @@ var calculator = (function() {
 
 	} // end checkGetClass
 
+	// function takes a number button dom element, and
+	// attaches calc's enterNumber method to its click event
+	function bindNum(obj) {
+		obj.onclick = function() {
+			calculator.enterNumber(this.value); // this is obj (a num btn)
+		};
+	}
+
+	// function takes a function button dom element, and
+	// attaches calc's enterOperator method to its click event
+	function bindOpp(obj) {
+		obj.onclick = function() {
+			calculator.enterOperator(this.value); // this is obj (a fn btn)
+		};
+	}
+
 	// First, I will check if document.getElementsByClassName is natively
 	// defined, and define it myself if not.
 
@@ -260,9 +276,7 @@ var calculator = (function() {
 
 		// clicking a number will update the display and the temp variable
 
-		numbers[i].onclick = function() {
-			calculator.enterNumber(this.value); // this = a number btn
-		};
+		bindNum(numbers[i]);
 	}
 
 	operators = document.getElementsByClassName('operator');
@@ -271,9 +285,7 @@ var calculator = (function() {
 
 		// clicking an operator will make the calculator perform an operation.
 
-		operators[k].onclick = function() {
-			calculator.enterOperator(this.value); // this = a function btn
-		};
+		bindOpp(operators[k]);
 
 	}
 
