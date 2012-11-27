@@ -1,7 +1,7 @@
 //  The calculator pseudoClass represents a four-function calculator.
 //  The following both defines and constructs the singleton calculator object.
 
-var calculator = (function() {
+var calculator = (function () {
 
 	'use strict';
 
@@ -30,7 +30,7 @@ var calculator = (function() {
 		//        
 		// Returns the state to show to user.
 
-		evaluate : function(operate) {
+		evaluate : function (operate) {
 
 			// Special condition if there has not been output yet.
 
@@ -78,7 +78,7 @@ var calculator = (function() {
 		// internally.
 		// Returns the state to show to user.
 
-		update : function(lastDigit) {
+		update : function (lastDigit) {
 			this.temp = (10 * this.temp) + parseInt(lastDigit, 10);
 			return this.temp; // user sees number entered thus far
 		},
@@ -86,7 +86,7 @@ var calculator = (function() {
 		// The reset function clears the calculator's instance variables, and
 		// wipes the screen.
 
-		reset : function() {
+		reset : function () {
 			this.tally = 0;
 			this.operator = '+';
 			this.temp = 0;
@@ -108,7 +108,7 @@ var calculator = (function() {
 
 		// method to set display to given number
 
-		output : function(val) {
+		output : function (val) {
 
 			if (typeof val === 'number') {
 
@@ -119,7 +119,7 @@ var calculator = (function() {
 		// Sets sets given object to be the new display.
 		// Copies the old output into new display.
 
-		setDisplay : function(newScreen) { // function
+		setDisplay : function (newScreen) { // function
 
 			if (typeof newScreen === 'object') {
 
@@ -138,7 +138,7 @@ var calculator = (function() {
 	// to the inner calculator's update method.
 
 	controller = {
-		enterNumber : function(num) {
+		enterNumber : function (num) {
 
 			if (typeof model.update === 'function') {
 
@@ -153,7 +153,7 @@ var calculator = (function() {
 		// operator
 		// to the inner calculator's evaluate method.
 
-		enterOperator : function(opp) {
+		enterOperator : function (opp) {
 
 			if (typeof model.evaluate === 'function') {
 
@@ -166,7 +166,7 @@ var calculator = (function() {
 		// no params. If possible, clear will call the inner calculator's
 		// reset method.
 
-		clear : function() {
+		clear : function () {
 
 			if (typeof model.reset === 'function') {
 
@@ -178,7 +178,7 @@ var calculator = (function() {
 		// Set Display takes an object, and set it to be the
 		// Calculator's new output field.
 
-		setDisplay : function(obj) {
+		setDisplay : function (obj) {
 
 			view.setDisplay(obj);
 		}
@@ -193,7 +193,7 @@ var calculator = (function() {
 // will go away at the end.
 // (But if it defines getElementsByClassName, that will not.)
 
-(function() {
+(function () {
 
 	'use strict';
 
@@ -203,14 +203,14 @@ var calculator = (function() {
 
 		var els, elsLen, pattern, j;
 
-		/*jslint browser:true */
-		
+		/*jslint browser:true*/
+
 		if (typeof document.getElementsByClassName !== 'function') {
 
 			// The following implementation is thanks to:
 			// http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-3
 
-			document.getElementsByClassName = function(searchClass, node, tag) {
+			document.getElementsByClassName = function (searchClass, node, tag) {
 				var classElements = [];
 				if (node === null) {
 					node = document;
@@ -241,7 +241,7 @@ var calculator = (function() {
 	// function takes a number button dom element, and
 	// attaches calc's enterNumber method to its click event
 	function bindNum(obj) {
-		obj.onclick = function() {
+		obj.onclick = function () {
 			calculator.enterNumber(this.value); // this is obj (a num btn)
 		};
 	}
@@ -249,7 +249,7 @@ var calculator = (function() {
 	// function takes a function button dom element, and
 	// attaches calc's enterOperator method to its click event
 	function bindOpp(obj) {
-		obj.onclick = function() {
+		obj.onclick = function () {
 			calculator.enterOperator(this.value); // this is obj (a fn btn)
 		};
 	}
@@ -291,7 +291,7 @@ var calculator = (function() {
 
 	// lastly, bind the clear function to the clear buttons' click event
 
-	document.getElementById('clear').onclick = function() {
+	document.getElementById('clear').onclick = function () {
 		calculator.clear();
 	};
 
