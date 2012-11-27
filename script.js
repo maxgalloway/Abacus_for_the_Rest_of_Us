@@ -1,7 +1,7 @@
 //  The calculator pseudoClass represents a four-function calculator.
 //  The following both defines and constructs the singleton calculator object.
 
-var calculator = new function(){
+var calculator = (function(){
     
 	'use strict';
 	
@@ -12,7 +12,7 @@ var calculator = new function(){
 //  and its properties, and its methods are invisible 
 //  to the outside world.   
     
-	var model = {}, view = {};
+	var model = {}, view = {}, controller = {};
 	
     model = {
 
@@ -135,51 +135,55 @@ var calculator = new function(){
 //  digit as a param. If possible, enterNumber will pass that digit 
 //  to the inner calculator's update method.
 
-    this.enterNumber = function(num){
+    controller = {
+    	enterNumber : function(num){
         
         
-        if( typeof model.update === 'function' ){
-            
+	        if( typeof model.update === 'function' ){
+	            
 //          Pass response from model's update method to the view
             view.output( model.update(num) );
-        } 
-    };
+	        } 
+    	},
 
-//  Enter operator is called when a user presses an operator, and takes that 
-//  operator as a param. If possible, enterOperator will pass that operator 
-//  to the inner calculator's evaluate method.
+//    	Enter operator is called when a user presses an operator, and takes that 
+//    	operator as a param. If possible, enterOperator will pass that operator 
+//    	to the inner calculator's evaluate method.
 
-    this.enterOperator = function(opp){
-        
-        if( typeof model.evaluate === 'function' ){
-            
-//          Pass response from model's evaluate method to the view            
-            view.output( model.evaluate(opp) );
-        }
-    };
+	    enterOperator : function(opp){
+	        
+	        if( typeof model.evaluate === 'function' ){
+	            
+//	        	Pass response from model's evaluate method to the view            
+	            view.output( model.evaluate(opp) );
+	        }
+	    },
  
-//  Clear is called when a user presses the clear button, and takes 
-//  no params. If possible, clear will call the inner calculator's 
-//  reset method.
+//	    Clear is called when a user presses the clear button, and takes 
+//	    no params. If possible, clear will call the inner calculator's 
+//	    reset method.
   
-    this.clear = function(){
+	    clear : function(){
         
-        if( typeof model.reset === 'function' ){
-            
-//          Pass response from model's reset method to the view            
-            view.output( model.reset() );
-        }
-    };
+	        if( typeof model.reset === 'function' ){
+	            
+//	        	Pass response from model's reset method to the view            
+	            view.output( model.reset() );
+	        }
+	    },
     
-//  Set Display takes an object, and set it to be the 
-//  Calculator's new output field.
+//	    Set Display takes an object, and set it to be the 
+//	    Calculator's new output field.
     
-    this.setDisplay = function( obj ){
+	    setDisplay : function( obj ){
         
-      view.setDisplay(obj);  
-    };
+	    	view.setDisplay(obj);  
+	    }
+    }
     
-}; // end calculator definition
+    return controller;
+    
+})(); // end calculator definition
 
 //    This is where the setup for the calculator happens. It's all 
 //    inside an anonymous function, so  the vars and the functions 
