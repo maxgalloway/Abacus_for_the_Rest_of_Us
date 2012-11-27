@@ -141,7 +141,7 @@ var calculator = (function () {
 
 			if (typeof model.update === 'function') {
 
-				// Pass response from model's update method to the view
+//				Pass response from model's update method to the view
 				view.output(model.update(num));
 			}
 		},
@@ -156,7 +156,7 @@ var calculator = (function () {
 
 			if (typeof model.evaluate === 'function') {
 
-				// Pass response from model's evaluate method to the view
+//				Pass response from model's evaluate method to the view
 				view.output(model.evaluate(opp));
 			}
 		},
@@ -169,7 +169,7 @@ var calculator = (function () {
 
 			if (typeof model.reset === 'function') {
 
-				// Pass response from model's reset method to the view
+//				Pass response from model's reset method to the view
 				view.output(model.reset());
 			}
 		},
