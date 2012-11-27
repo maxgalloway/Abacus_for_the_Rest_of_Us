@@ -3,14 +3,18 @@
 
 var calculator = new function(){
     
+	'use strict';
+	
 //  model pseudoclass is an internal representation of 
 //  the calculator's state.
 //  
 //  By defining it as a var inside the pseudoclass, it
 //  and its properties, and its methods are invisible 
 //  to the outside world.   
-        
-    var model = {
+    
+	var model = {}, view = {};
+	
+    model = {
 
         tally : 0, // running total since last clear
 
@@ -74,7 +78,7 @@ var calculator = new function(){
 //      Returns the state to show to user.        
 
         update : function(lastDigit){
-            this.temp = (10 * this.temp) + parseInt(lastDigit);
+            this.temp = (10 * this.temp) + parseInt(lastDigit , 10);
             return this.temp; // user sees number entered thus far
         },
 
@@ -94,7 +98,7 @@ var calculator = new function(){
     
 //  view is the representation of the screen. 
     
-    var view = {
+    view = {
         
 //      the object holding the output.
         
@@ -134,11 +138,11 @@ var calculator = new function(){
     this.enterNumber = function(num){
         
         
-        if( 'update' in model ){
+        if( typeof model.update === 'function' ){
             
 //          Pass response from model's update method to the view
             view.output( model.update(num) );
-        }
+        } 
     };
 
 //  Enter operator is called when a user presses an operator, and takes that 
@@ -147,7 +151,7 @@ var calculator = new function(){
 
     this.enterOperator = function(opp){
         
-        if( 'evaluate' in model ){
+        if( typeof model.evaluate === 'function' ){
             
 //          Pass response from model's evaluate method to the view            
             view.output( model.evaluate(opp) );
@@ -160,7 +164,7 @@ var calculator = new function(){
   
     this.clear = function(){
         
-        if( 'reset' in model ){
+        if( typeof model.reset === 'function' ){
             
 //          Pass response from model's reset method to the view            
             view.output( model.reset() );
@@ -183,8 +187,44 @@ var calculator = new function(){
 //    (But if it defines getElementsByClassName, that will not.)
 
 (function(){
-    
-//  First, I will check if document.getElementsByClassName is natifley 
+	
+	'use strict';
+	
+    var numbers = {} , i = 0;
+	
+    function checkGetClass(){
+        
+        if ( typeof document.getElementsByClassName !== 'function' ){
+            
+//         The following implementation is thanks to:
+//         http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-3
+        
+            document.getElementsByClassName = function (searchClass,node,tag) {
+                var classElements = [];
+                if ( node === null )
+                    node = document;
+                if ( tag === null )
+                    tag = '*';
+                var els = node.getElementsByTagName(tag);
+                var elsLen = els.length;
+                var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+                for (i = 0, j = 0; i < elsLen; i++) {
+                    if ( pattern.test(els[i].className) ) {
+                    classElements[j] = els[i];
+                    j++;
+                    }
+                }
+                return classElements;
+            };
+
+            // end implementation
+            
+      } // end if
+      
+    } // end checkGetClass
+	
+
+//  First, I will check if document.getElementsByClassName is natively 
 //  defined, and define it myself if not.
     
     checkGetClass();
@@ -204,7 +244,7 @@ var calculator = new function(){
 
     var numbers = document.getElementsByClassName('number');
     
-    for (var i = 0; i < numbers.length; i++) {
+    for (; i < numbers.length; i++) {
 
 //      clicking a number will update the display and the temp variable
 
@@ -231,35 +271,6 @@ var calculator = new function(){
           calculator.clear();
     };
     
-    function checkGetClass(){
-        
-        if (!('getElementsByClassName' in document)){
-            
-//         The following implementation is thanks to:
-//         http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-3
-        
-            document.getElementsByClassName = function (searchClass,node,tag) {
-                var classElements = new Array();
-                if ( node == null )
-                    node = document;
-                if ( tag == null )
-                    tag = '*';
-                var els = node.getElementsByTagName(tag);
-                var elsLen = els.length;
-                var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
-                for (i = 0, j = 0; i < elsLen; i++) {
-                    if ( pattern.test(els[i].className) ) {
-                    classElements[j] = els[i];
-                    j++;
-                    }
-                }
-                return classElements;
-            };
 
-            // end implementation
-            
-      } // end if
-      
-    } // end checkGetClass
     
 })(); // end the anonymous function, and invoke it
