@@ -210,7 +210,7 @@ var calculator = new function(){
 
         numbers[i].onclick = function(){
               calculator.enterNumber(this.value); // this = a number btn
-        }
+        };
     }
 
     var operators = document.getElementsByClassName('operator');
@@ -221,7 +221,7 @@ var calculator = new function(){
 
         operators[k].onclick = function(){
               calculator.enterOperator(this.value); // this = a function btn
-        }
+        };
 
     }
 
@@ -229,7 +229,7 @@ var calculator = new function(){
 
     document.getElementById('clear').onclick = function(){
           calculator.clear();
-    }
+    };
     
     function checkGetClass(){
         
@@ -262,4 +262,4 @@ var calculator = new function(){
       
     } // end checkGetClass
     
-})(); // end the anonymouse function, and invoke it
+})(); // end the anonymous function, and invoke it
