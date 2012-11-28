@@ -198,7 +198,9 @@ var calculator = (function () {
 
 	var numbers, operators, i, k;
 
-	function checkGetClass() {
+//	First, I will check if document.getElementsByClassName is natively
+//	defined, and define it myself if not.	
+	(function () {
 
 		var els, elsLen, pattern, j;
 
@@ -235,7 +237,7 @@ var calculator = (function () {
 
 		} // end if
 
-	} // end checkGetClass
+	}()); // end check of getElementsByClass
 
 //	function takes a number button dom element, and
 //	attaches calc's enterNumber method to its click event
@@ -252,11 +254,6 @@ var calculator = (function () {
 			calculator.enterOperator(this.value); // this is obj (a fn btn)
 		};
 	}
-
-//	First, I will check if document.getElementsByClassName is natively
-//	defined, and define it myself if not.
-
-	checkGetClass();
 
 //	Second, run setup routine, in which page elements are bound to
 //	calculator methods.
@@ -294,4 +291,4 @@ var calculator = (function () {
 		calculator.clear();
 	};
 
-}()); // end the anonymous function, and invoke it
+}()); // end the anonymous init function, and invoke it
