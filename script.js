@@ -5,15 +5,11 @@ var calculator = (function () {
 
 	'use strict';
 
+	var model, view, controller;
+	
 //	model pseudoclass is an internal representation of
 //	the calculator's state.
-//  
-//	By defining it as a var inside the pseudoclass, it
-//	and its properties, and its methods are invisible
-//	to the outside world.
-
-	var model, view, controller;
-
+	
 	model = {
 
 		tally : 0, // running total since last clear
