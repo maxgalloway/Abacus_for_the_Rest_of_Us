@@ -1,27 +1,3 @@
-/* 
-    Each div directly descending from the wrapper will stack up left to right.
-    In other words, the number field and the operators are next to each other.
-*/
-/*
-form>div{
-    float:left;
-}
-*/
-/*
-    I want the operators to appear in a vertical line next to the numbers, so 
-    I am displaying them block. Also, I want the output "screen" on its own row.
-*/
-/*
-#operators>input{
-    display: block;
-}
-
-output{
-    display:block;
-    border: black solid;
-}
-*/
-
 form:before, form:after{
     content: "";
     display: table;
