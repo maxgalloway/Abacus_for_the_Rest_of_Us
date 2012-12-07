@@ -51,14 +51,13 @@ table {
 
 /*end reset*/
 
+/* set-up for ems */
 body{
-	font-size: 
+	font-size: 100%;
 }
 
+/* setup form to take full screen  */
 form{
-    float: left;
-	display: block;
-	
     position:absolute;
     top:0;
     left:0;
@@ -67,34 +66,36 @@ form{
 	height: 100%;
 }
 
-#numField>div{
-	width: 100%;
-}
-
 /* 
 put number field and operators side-by-side
 */
+
 form>div{
-    float: left;
-    width: 72%;
+	float: left;
     top: 0;
 	height: 85%;
 }
 
+#numField{
+    width: 75%;
+}
+
 #operators{
-	width: 24%;
-	float: right;
+	width: 25%;
 }
 
 /*
 display four functions in column
 */
-#operators>input.operator{
+#operators>input{
 	display:block;
 }
 
-#numField input{
-	width: 20%;
+input{
+	width: 15em;
+	height: 15em;
+	margin-left: 3em;
+	
 }
 
 output{
