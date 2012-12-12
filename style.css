@@ -37,13 +37,14 @@ form>div{
 display four functions in column
 */
 #operators>input{
-	display:block;
+	/*display:block;*/
 }
 
 input{
 	width: 15em;
 	height: 15em;
 	margin-left: 3em;
+	display: inline-block;
 	
 }
 
