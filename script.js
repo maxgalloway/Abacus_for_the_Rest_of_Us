@@ -16,7 +16,7 @@ var calculator = (function () {
 
 		operator : '+', // last operator pressed
 
-		temp : 0, // number, as it entered by user
+		temp : '', // number, as it entered by user
 
 		isClear : true, // flag indicates whether there has been output
 
@@ -30,31 +30,33 @@ var calculator = (function () {
 
 //			Special condition if there has not been output yet.
 
+			var tempN = parseFloat(this.temp);
+			
 			if (this.isClear) {
 
-				this.tally = this.temp;
+				this.tally = tempN
 				this.isClear = false;
 
 			} else {
 
 //				Perform the stored operation on tally and temp
-
+				
 				switch (this.operator) {
 
 				case '+':
-					this.tally += this.temp;
+					this.tally += tempN;
 					break;
 
 				case '-':
-					this.tally -= this.temp;
+					this.tally -= tempN;
 					break;
 
 				case 'x':
-					this.tally *= this.temp;
+					this.tally *= tempN;
 					break;
 
 				case '/':
-					this.tally /= this.temp;
+					this.tally /= tempN;
 					break;
 
 				}
@@ -62,7 +64,7 @@ var calculator = (function () {
 
 //			In either case, update the display, and prepare for next input
 
-			this.temp = 0; // reset temp
+			this.temp = '0'; // reset temp
 			this.operator = operate; // get ready to perform the given operation
 
 			return this.tally; // user sees result of computation
@@ -74,7 +76,14 @@ var calculator = (function () {
 //		Returns the state to show to user.
 
 		update : function (lastDigit) {
-			this.temp = (10 * this.temp) + parseInt(lastDigit, 10);
+			
+//			wipe out display to prevent leading zero 
+			if(this.temp === '0'){
+				this.temp = '';
+			}
+			
+//			concat display with new input			
+			this.temp += lastDigit;
 			return this.temp; // user sees number entered thus far
 		},
 
@@ -84,7 +93,7 @@ var calculator = (function () {
 		reset : function () {
 			this.tally = 0;
 			this.operator = '+';
-			this.temp = 0;
+			this.temp = '0';
 			this.isClear = true;
 			return 0;
 		}
@@ -105,10 +114,8 @@ var calculator = (function () {
 
 		output : function (val) {
 
-			if (typeof val === 'number') {
+			this.display.innerHTML = val;
 
-				this.display.innerHTML = val;
-			}
 		},
 
 //		Sets sets given object to be the new display.
@@ -186,7 +193,6 @@ var calculator = (function () {
 // This is where the setup for the calculator happens. It's all
 // inside an anonymous function, so the vars and the functions
 // will go away at the end.
-// (But if it defines getElementsByClassName, that will not.)
 
 (function () {
 
@@ -194,46 +200,11 @@ var calculator = (function () {
 
 	var numbers, operators, i, k;
 
-//	First, I will check if document.getElementsByClassName is natively
-//	defined, and define it myself if not.	
-	(function () {
-
 		var els, elsLen, pattern, j;
 
 		/*jslint browser:true*/
-
-		if (typeof document.getElementsByClassName !== 'function') {
-
-//			The following implementation is based on:
-//			http://ejohn.org/blog/getelementsbyclassname-speed-comparison/#js-3
-
-			document.getElementsByClassName = function (searchClass, node, tag) {
-				var classElements = [];
-				if (node === null) {
-					node = document;
-				}
-
-				if (tag === null) {
-					tag = '*';
-				}
-
-				els = node.getElementsByTagName(tag);
-				elsLen = els.length;
-				pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
-				for (i = 0, j = 0; i < elsLen; i += 1) {
-					if (pattern.test(els[i].className)) {
-						classElements[j] = els[i];
-						j += 1;
-					}
-				}
-				return classElements;
-			};
-
-//			end implementation
-
-		} // end if
-
-	}()); // end check of getElementsByClass
+		
+//	First, create click handlers for the buttons	
 
 //	function takes a number button dom element, and
 //	attaches calc's enterNumber method to its click event
