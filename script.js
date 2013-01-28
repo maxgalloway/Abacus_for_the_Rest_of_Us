@@ -67,6 +67,10 @@ var calculator = (function () {
 			this.temp = '0'; // reset temp
 			this.operator = operate; // get ready to perform the given operation
 
+			if( isNaN(this.tayy) ){
+				this.reset();
+			}
+			
 			return this.tally; // user sees result of computation
 		},
 
@@ -84,6 +88,11 @@ var calculator = (function () {
 			
 //			concat display with new input			
 			this.temp += lastDigit;
+			
+			if( isNaN(this.temp)){
+				this.reset();
+			}
+			
 			return this.temp; // user sees number entered thus far
 		},
 

@@ -6,7 +6,7 @@
         <title>Calculator</title>
         
         <link rel="stylesheet" type="text/css" href="reset.css"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>    
+        <link rel="stylesheet" type="text/css" href="style2.css"/>    
     </head>
     
     <body>
@@ -16,42 +16,38 @@
             <!-- the calculator's "screen" -->
             <output name="out" id="out">0</output>
             
-            <div id="numField"><!-- The number field. -->
+            <div id="inputField"><!-- The number field. -->
                 <div>
                     <input type="button" value="7" class="number"/>
                     <input type="button" value="8" class="number"/>
                     <input type="button" value="9" class="number"/>
+                    <input type="button" value="+" class="operator"/>
                 </div>
 
                 <div>
                     <input type="button" value="4" class="number"/>
                     <input type="button" value="5" class="number"/>
                     <input type="button" value="6" class="number"/>
+                    <input type="button" value="-" class="operator"/>
                 </div>
 
                 <div>
                     <input type="button" value="1" class="number"/>
                     <input type="button" value="2" class="number"/>
                     <input type="button" value="3" class="number"/>
+                    <input type="button" value="x" class="operator"/>
                 </div>
+                                   
+	            <div id="specialFuncs">
+	                <input type="button" value="C" id="clear"/>
+	                <input type="button" value="0" class="number"/>
+	                <input type="button" value="." class="number"/>
+	                <input type="button" value="=" class="operator" id="equals"/>
+	                <input type="button" value="/" class="operator"/>
+	            </div>
 
-                <div>
-                    <input type="button" value="C" id="clear"/>
-                    <input type="button" value="0" class="number"/>
-                    <input type="button" value="." class="number"/>
-                    <input type="button" value="=" class="operator" id="equals"/>
-                </div>
-                
-            </div><!-- end number field -->
-            
-            <div id="operators"><!-- Four basic functions-->
-                
-                <input type="button" value="+" class="operator"/>
-                <input type="button" value="-" class="operator"/>
-                <input type="button" value="x" class="operator"/>
-                <input type="button" value="/" class="operator"/>
-            </div>
-            
+      		</div><!-- end number field --> 
+                                    
         </form><!-- end calculator -->
         
         <script type="text/javascript" src="script.js"></script>
