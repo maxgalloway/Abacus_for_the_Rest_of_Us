@@ -1,11 +1,12 @@
 {
-	"name": "Abacus For The Rest Of Us",
+	"appcache_path": "/cache.manifest",
 	"description": "The Abacus For The Rest Of Us does for calculators, what Festivus did for holidays.\n\nThis is a simple calculator webapp for mobile as a full screen app, or embeddable for desktop sites.\n\nThis webapp is:\nW3C valid html\nW3C valid css\nJslint compliant\nopen source -- github.com/maxvgc",
 	"default_locale": "en",
 	"developer": {
 		"name": "Max Galloway-Carson",
 		"url": "github.com/maxvgc"
 	},
+	"fullscreen": "true",
 	"icons": {
 	  "16": "/icons/16.png",
 	  "30": "/icons/30.png",
@@ -16,8 +17,8 @@
 	  "128": "/icons/128.png",
 	  "256": "/icons/256.png"
 	},
-	"fullscreen": "true",
 	"installs_allowed_from": ["*"],
+	"name": "Abacus For The Rest Of Us",
 	"orientation": ["portrait"],
 	"type": "web",
 	"version": "1.0"
