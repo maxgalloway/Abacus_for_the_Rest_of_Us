@@ -3,197 +3,212 @@
 
 var calculator = (function () {
 
-	'use strict';
+    'use strict';
 
-	var model, 
-		view, 
-		controller;
-	
-//	model pseudoclass is an internal representation of
-//	the calculator's state.
-	
-	model = {
+    var model,
+        view,
+        controller;
 
-		tally : 0, // running total since last clear
+    // model pseudoclass is an internal representation of
+    // the calculator's state.
 
-		operator : '+', // last operator pressed
+    model = {
 
-		temp : '', // number, as it entered by user
+        tally : 0, // running total since last clear
 
-		isClear : true, // flag indicates whether there has been output
+        operator : '+', // last operator pressed
 
-//		The evaluate function performs a computation.
-//		First, it performs the stored operation on temp and tally.
-//		Then it stores the given operation for the next evaluation.
-//		        
-//		Returns the state to show to user.
+        temp : '', // number, as it entered by user
 
-		evaluate : function (operate) {
+        isClear : true, // flag indicates whether there has been output
 
-//			Special condition if there has not been output yet.
+        // The evaluate function performs a computation.
+        // First, it performs the stored operation on temp and tally.
+        // Then it stores the given operation for the next evaluation.
+        //
+        // Returns the state to show to user.
 
-			var tempN = parseFloat(this.temp);
-			
-			if (this.isClear) {
+        evaluate : function (operate) {
 
-				this.tally = tempN;
-				this.isClear = false;
+            // Special condition if there has not been output yet.
 
-			} else {
+            var tempN = parseFloat(this.temp);
 
-//				Perform the stored operation on tally and temp
-				
-				switch (this.operator) {
+            if (this.isClear) {
 
-				case '+':
-					this.tally += tempN;
-					break;
+                this.tally = tempN;
+                this.isClear = false;
 
-				case '-':
-					this.tally -= tempN;
-					break;
+            } else {
 
-				case 'x':
-					this.tally *= tempN;
-					break;
+                // Perform the stored operation on tally and
+                // temp
 
-				case '/':
-					this.tally /= tempN;
-					break;
+                switch (this.operator) {
 
-				}
-			}
+                case '+':
+                    this.tally += tempN;
+                    break;
 
-//			In either case, update the display, and prepare for next input
+                case '-':
+                    this.tally -= tempN;
+                    break;
 
-			this.temp = '0'; // reset temp
-			this.operator = operate; // get ready to perform the given operation
+                case 'x':
+                    this.tally *= tempN;
+                    break;
 
-			if( isNaN(this.tally) ){
-				this.reset();
-			}
-			
-			return this.tally; // user sees result of computation
-		},
+                case '/':
+                    this.tally /= tempN;
+                    break;
 
-//		The update function will take string representing a single digit, and
-//		append it to what the user has entered so far, both on the screen and
-//		internally.
-//		Returns the state to show to user.
+                }
+            }
 
-		update : function (lastDigit) {
-			
-//			wipe out display to prevent leading zero 
-			if(this.temp === '0'){
-				this.temp = '';
-			}
-			
-//			concat display with new input			
-			this.temp += lastDigit;
-			
-			return this.temp; // user sees number entered thus far
-		},
+            // In either case, update the display, and prepare for
+            // next input
 
-//		The reset function clears the calculator's instance variables, and
-//		wipes the screen.
+            this.temp = '0'; // reset temp
+            this.operator = operate; // get ready to perform
+            // the given operation
 
-		reset : function () {
-			this.tally = 0;
-			this.operator = '+';
-			this.temp = '0';
-			this.isClear = true;
-			return 0;
-		}
+            if (isNaN(this.tally)) {
+                this.reset();
+            }
 
-	}; // end model
+            return this.tally; // user sees result of
+            // computation
+        },
 
-//	view is the representation of the screen.
+        // The update function will take string representing a single
+        // digit, and
+        // append it to what the user has entered so far, both on the
+        // screen and
+        // internally.
+        // Returns the state to show to user.
 
-	view = {
+        update : function (lastDigit) {
 
-//		the object holding the output.
+            // wipe out display to prevent leading zero
+            if (this.temp === '0') {
+                this.temp = '';
+            }
 
-		display : {
-			innerHTML : "0"
-		},
+            // concat display with new input
+            this.temp += lastDigit;
 
-//		method to set display to given number
+            return this.temp; // user sees number entered thus
+            // far
+        },
 
-		output : function (val) {
+        // The reset function clears the calculator's instance
+        // variables, and
+        // wipes the screen.
 
-			this.display.innerHTML = val;
+        reset : function () {
+            this.tally = 0;
+            this.operator = '+';
+            this.temp = '0';
+            this.isClear = true;
+            return 0;
+        }
 
-		},
+    }; // end model
 
-//		Sets sets given object to be the new display.
-//		Copies the old output into new display.
+    // view is the representation of the screen.
 
-		setDisplay : function (newScreen) { // function
+    view = {
 
-			if (typeof newScreen === 'object') {
+        // the object holding the output.
 
-				newScreen.innerHTML = this.display.innerHTML;
+        display : {
+            innerHTML : "0"
+        },
 
-				this.display = newScreen;
-			}
-		}
-	}; // end view
+        // method to set display to given number
 
-//	These are the calculator's publicly facing methods.
-//	They should be consided the controller.
+        output : function (val) {
 
-//	Enter number is called when a user presses a digit, and takes that
-//	digit as a param. If possible, enterNumber will pass that digit
-//	to the inner calculator's update method.
+            this.display.innerHTML = val;
 
-	controller = {
-		enterNumber : function (num) {
+        },
 
-			if (typeof model.update === 'function') {
+        // Sets sets given object to be the new display.
+        // Copies the old output into new display.
 
-//				Pass response from model's update method to the view
-				view.output(model.update(num));
-			}
-		},
+        setDisplay : function (newScreen) { // function
 
-//		Enter operator is called when a user presses an operator, and takes
-//		that
-//		operator as a param. If possible, enterOperator will pass that
-//		operator
-//		to the inner calculator's evaluate method.
+            if (typeof newScreen === 'object') {
 
-		enterOperator : function (opp) {
+                newScreen.innerHTML = this.display.innerHTML;
 
-			if (typeof model.evaluate === 'function') {
+                this.display = newScreen;
+            }
+        }
+    }; // end view
 
-//				Pass response from model's evaluate method to the view
-				view.output(model.evaluate(opp));
-			}
-		},
+    // These are the calculator's publicly facing methods.
+    // They should be consided the controller.
 
-//		Clear is called when a user presses the clear button, and takes
-//		no params. If possible, clear will call the inner calculator's
-//		reset method.
+    // Enter number is called when a user presses a digit, and takes that
+    // digit as a param. If possible, enterNumber will pass that digit
+    // to the inner calculator's update method.
 
-		clear : function () {
+    controller = {
+        enterNumber : function (num) {
 
-			if (typeof model.reset === 'function') {
+            if (typeof model.update === 'function') {
 
-//				Pass response from model's reset method to the view
-				view.output(model.reset());
-			}
-		},
+                // Pass response from model's update method to
+                // the view
+                view.output(model.update(num));
+            }
+        },
 
-//		Set Display takes an object, and set it to be the
-//		Calculator's new output field.
+        // Enter operator is called when a user presses an operator, and
+        // takes
+        // that
+        // operator as a param. If possible, enterOperator will pass
+        // that
+        // operator
+        // to the inner calculator's evaluate method.
 
-		setDisplay : function (obj) {
+        enterOperator : function (opp) {
 
-			view.setDisplay(obj);
-		}
-	};
+            if (typeof model.evaluate === 'function') {
 
-	return controller;
+                // Pass response from model's evaluate method to
+                // the view
+                view.output(model.evaluate(opp));
+            }
+        },
+
+        // Clear is called when a user presses the clear button, and
+        // takes
+        // no params. If possible, clear will call the inner
+        // calculator's
+        // reset method.
+
+        clear : function () {
+
+            if (typeof model.reset === 'function') {
+
+                // Pass response from model's reset method to
+                // the view
+                view.output(model.reset());
+            }
+        },
+
+        // Set Display takes an object, and set it to be the
+        // Calculator's new output field.
+
+        setDisplay : function (obj) {
+
+            view.setDisplay(obj);
+        }
+    };
+
+    return controller;
 
 }()); // end calculator definition
 
@@ -203,67 +218,71 @@ var calculator = (function () {
 
 (function () {
 
-	'use strict';
+    'use strict';
 
-	var numbers, 
-		operators, 
-		i, 
-		k;
-		
-//	First, create click handlers for the buttons	
+    var numbers,
+        operators,
+        i,
+        k;
 
-//	function takes a number button dom element, and
-//	attaches calc's enterNumber method to its click event
-	function bindNum(obj) {
-		obj.onclick = function () {
-			calculator.enterNumber(this.value); // this is obj (a num btn)
-		};
-	}
+    // First, create click handlers for the buttons
 
-//	function takes a function button dom element, and
-//	attaches calc's enterOperator method to its click event
-	function bindOpp(obj) {
-		obj.onclick = function () {
-			calculator.enterOperator(this.value); // this is obj (a fn btn)
-		};
-	}
+    // function takes a number button dom element, and
+    // attaches calc's enterNumber method to its click event
+    function bindNum(obj) {
+        obj.onclick = function () {
+            calculator.enterNumber(this.value); // this is obj
+            // (a num btn)
+        };
+    }
 
-//	Second, run setup routine, in which page elements are bound to
-//	calculator methods.
+    // function takes a function button dom element, and
+    // attaches calc's enterOperator method to its click event
+    function bindOpp(obj) {
+        obj.onclick = function () {
+            calculator.enterOperator(this.value); // this is obj
+            // (a fn btn)
+        };
+    }
 
-//	Start by calling the calcuator's init method, passing
-//	in an output element to be the display.
+    // Second, run setup routine, in which page elements are bound to
+    // calculator methods.
 
-	/*jslint browser:true*/	
-	
-	calculator.setDisplay(document.getElementById('out'));
+    // Start by calling the calcuator's init method, passing
+    // in an output element to be the display.
 
-//	Move onto binding the numbers' click
-//	event to the calculator's update method.
+    /*jslint browser:true*/
 
-	numbers = document.getElementsByClassName('number');
+    calculator.setDisplay(document.getElementById('out'));
 
-	for (i = 0; i < numbers.length; i += 1) {
+    // Move onto binding the numbers' click
+    // event to the calculator's update method.
 
-//		clicking a number will update the display and the temp variable
+    numbers = document.getElementsByClassName('number');
 
-		bindNum(numbers[i]);
-	}
+    for (i = 0; i < numbers.length; i += 1) {
 
-	operators = document.getElementsByClassName('operator');
+        // clicking a number will update the display and the temp
+        // variable
 
-	for (k = 0; k < operators.length; k += 1) {
+        bindNum(numbers[i]);
+    }
 
-//		clicking an operator will make the calculator perform an operation.
+    operators = document.getElementsByClassName('operator');
 
-		bindOpp(operators[k]);
+    for (k = 0; k < operators.length; k += 1) {
 
-	}
+        // clicking an operator will make the calculator perform an
+        // operation.
 
-//	lastly, bind the clear function to the clear buttons' click event
+        bindOpp(operators[k]);
 
-	document.getElementById('clear').onclick = function () {
-		calculator.clear();
-	};
+    }
+
+    // lastly, bind the clear function to the clear buttons' click event
+
+    document.getElementById('clear').onclick = function () {
+        calculator.clear();
+    };
 
 }()); // end the anonymous init function, and invoke it
