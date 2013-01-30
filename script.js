@@ -9,8 +9,8 @@ var calculator = (function () {
         view,
         controller;
 
-    // model pseudoclass is an internal representation of
-    // the calculator's state.
+//  model pseudoclass is an internal representation of
+//  the calculator's state.
 
     model = {
 
@@ -22,15 +22,15 @@ var calculator = (function () {
 
         isClear : true, // flag indicates whether there has been output
 
-        // The evaluate function performs a computation.
-        // First, it performs the stored operation on temp and tally.
-        // Then it stores the given operation for the next evaluation.
-        //
-        // Returns the state to show to user.
+//      The evaluate function performs a computation.
+//      First, it performs the stored operation on temp and tally.
+//      Then it stores the given operation for the next evaluation.
+//
+//      Returns the state to show to user.
 
         evaluate : function (operate) {
 
-            // Special condition if there has not been output yet.
+//      Special condition if there has not been output yet.
 
             var tempN = parseFloat(this.temp);
 
@@ -41,8 +41,7 @@ var calculator = (function () {
 
             } else {
 
-                // Perform the stored operation on tally and
-                // temp
+//              Perform the stored operation on tally and temp
 
                 switch (this.operator) {
 
@@ -65,8 +64,8 @@ var calculator = (function () {
                 }
             }
 
-            // In either case, update the display, and prepare for
-            // next input
+//          In either case, update the display, and prepare for
+//          next input
 
             this.temp = '0'; // reset temp
             this.operator = operate; // get ready to perform
@@ -76,34 +75,30 @@ var calculator = (function () {
                 this.reset();
             }
 
-            return this.tally; // user sees result of
-            // computation
+            return this.tally; // user sees result of computation
         },
 
-        // The update function will take string representing a single
-        // digit, and
-        // append it to what the user has entered so far, both on the
-        // screen and
-        // internally.
-        // Returns the state to show to user.
+//      The update function will take string representing a single
+//      digit, and
+//      append it to what the user has entered so far, both on the
+//      screen and internally.
+//      Returns the state to show to user.
 
         update : function (lastDigit) {
 
-            // wipe out display to prevent leading zero
+//          wipe out display to prevent leading zero
             if (this.temp === '0') {
                 this.temp = '';
             }
 
-            // concat display with new input
+//          concat display with new input
             this.temp += lastDigit;
 
-            return this.temp; // user sees number entered thus
-            // far
+            return this.temp; // user sees number entered thus far
         },
 
-        // The reset function clears the calculator's instance
-        // variables, and
-        // wipes the screen.
+//      The reset function clears the calculator's instance
+//      variables, and wipes the screen.
 
         reset : function () {
             this.tally = 0;
@@ -115,17 +110,17 @@ var calculator = (function () {
 
     }; // end model
 
-    // view is the representation of the screen.
+//  view is the representation of the screen.
 
     view = {
 
-        // the object holding the output.
+//      the object holding the output.
 
         display : {
             innerHTML : "0"
         },
 
-        // method to set display to given number
+//      method to set display to given number
 
         output : function (val) {
 
@@ -133,8 +128,8 @@ var calculator = (function () {
 
         },
 
-        // Sets sets given object to be the new display.
-        // Copies the old output into new display.
+//      Sets sets given object to be the new display.
+//      Copies the old output into new display.
 
         setDisplay : function (newScreen) { // function
 
@@ -147,60 +142,55 @@ var calculator = (function () {
         }
     }; // end view
 
-    // These are the calculator's publicly facing methods.
-    // They should be consided the controller.
+//  These are the calculator's publicly facing methods.
+//  They should be consided the controller.
 
-    // Enter number is called when a user presses a digit, and takes that
-    // digit as a param. If possible, enterNumber will pass that digit
-    // to the inner calculator's update method.
+//  Enter number is called when a user presses a digit, and takes that
+//  digit as a param. If possible, enterNumber will pass that digit
+//  to the inner calculator's update method.
 
     controller = {
         enterNumber : function (num) {
 
             if (typeof model.update === 'function') {
 
-                // Pass response from model's update method to
-                // the view
+//              Pass response from model's update method to
+//              the view
                 view.output(model.update(num));
             }
         },
 
-        // Enter operator is called when a user presses an operator, and
-        // takes
-        // that
-        // operator as a param. If possible, enterOperator will pass
-        // that
-        // operator
-        // to the inner calculator's evaluate method.
+//      Enter operator is called when a user presses an operator,
+//      and takes that operator as a param. If possible, enterOperator 
+//      will pass that operator to the inner calculator's 
+//      evaluate method.
 
         enterOperator : function (opp) {
 
             if (typeof model.evaluate === 'function') {
 
-                // Pass response from model's evaluate method to
-                // the view
+//              Pass response from model's evaluate method to
+//              the view
                 view.output(model.evaluate(opp));
             }
         },
 
-        // Clear is called when a user presses the clear button, and
-        // takes
-        // no params. If possible, clear will call the inner
-        // calculator's
-        // reset method.
+//      Clear is called when a user presses the clear button, and
+//      takes no params. If possible, clear will call the inner
+//      calculator's reset method.
 
         clear : function () {
 
             if (typeof model.reset === 'function') {
 
-                // Pass response from model's reset method to
-                // the view
+//              Pass response from model's reset method to
+//              the view
                 view.output(model.reset());
             }
         },
 
-        // Set Display takes an object, and set it to be the
-        // Calculator's new output field.
+//      Set Display takes an object, and set it to be the
+//      Calculator's new output field.
 
         setDisplay : function (obj) {
 
@@ -225,45 +215,43 @@ var calculator = (function () {
         i,
         k;
 
-    // First, create click handlers for the buttons
+//  First, create click handlers for the buttons
 
-    // function takes a number button dom element, and
-    // attaches calc's enterNumber method to its click event
+//  function takes a number button dom element, and
+//  attaches calc's enterNumber method to its click event
     function bindNum(obj) {
         obj.onclick = function () {
-            calculator.enterNumber(this.value); // this is obj
-            // (a num btn)
+            calculator.enterNumber(this.value); // 'this' is obj (a num btn)
         };
     }
 
-    // function takes a function button dom element, and
-    // attaches calc's enterOperator method to its click event
+//  function takes a function button dom element, and
+//  attaches calc's enterOperator method to its click event
     function bindOpp(obj) {
         obj.onclick = function () {
-            calculator.enterOperator(this.value); // this is obj
-            // (a fn btn)
+            calculator.enterOperator(this.value); // 'this' is obj (a fn btn)
         };
     }
 
-    // Second, run setup routine, in which page elements are bound to
-    // calculator methods.
+//  Second, run setup routine, in which page elements are bound to
+//  calculator methods.
 
-    // Start by calling the calcuator's init method, passing
-    // in an output element to be the display.
+//  Start by calling the calcuator's init method, passing
+//  in an output element to be the display.
 
     /*jslint browser:true*/
 
     calculator.setDisplay(document.getElementById('out'));
 
-    // Move onto binding the numbers' click
-    // event to the calculator's update method.
+//  Move onto binding the numbers' click
+//  event to the calculator's update method.
 
     numbers = document.getElementsByClassName('number');
 
     for (i = 0; i < numbers.length; i += 1) {
 
-        // clicking a number will update the display and the temp
-        // variable
+//      clicking a number will update the display and 
+//      the temp variable
 
         bindNum(numbers[i]);
     }
@@ -272,14 +260,14 @@ var calculator = (function () {
 
     for (k = 0; k < operators.length; k += 1) {
 
-        // clicking an operator will make the calculator perform an
-        // operation.
+//      clicking an operator will make the calculator 
+//      perform an operation.
 
         bindOpp(operators[k]);
 
     }
 
-    // lastly, bind the clear function to the clear buttons' click event
+//  lastly, bind the clear function to the clear buttons' click event
 
     document.getElementById('clear').onclick = function () {
         calculator.clear();
