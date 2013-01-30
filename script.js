@@ -5,7 +5,9 @@ var calculator = (function () {
 
 	'use strict';
 
-	var model, view, controller;
+	var model, 
+		view, 
+		controller;
 	
 //	model pseudoclass is an internal representation of
 //	the calculator's state.
@@ -34,7 +36,7 @@ var calculator = (function () {
 			
 			if (this.isClear) {
 
-				this.tally = tempN
+				this.tally = tempN;
 				this.isClear = false;
 
 			} else {
@@ -203,11 +205,10 @@ var calculator = (function () {
 
 	'use strict';
 
-	var numbers, operators, i, k;
-
-		var els, elsLen, pattern, j;
-
-		/*jslint browser:true*/
+	var numbers, 
+		operators, 
+		i, 
+		k;
 		
 //	First, create click handlers for the buttons	
 
@@ -233,6 +234,8 @@ var calculator = (function () {
 //	Start by calling the calcuator's init method, passing
 //	in an output element to be the display.
 
+	/*jslint browser:true*/	
+	
 	calculator.setDisplay(document.getElementById('out'));
 
 //	Move onto binding the numbers' click
