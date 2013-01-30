@@ -24,7 +24,7 @@ html,body,form {
 	height: 100%;
 }
 
-form#abacusFTROU {
+form {
 	text-align: center;
 	background-color: #000000;
 }
@@ -37,7 +37,7 @@ form#abacusFTROU {
 	height: 25%;
 }
 
-#abacusFTROU input {
+input {
 	margin-left: 1%;
 	height: 100%;
 	background-color: #000000;
@@ -60,7 +60,7 @@ form#abacusFTROU {
 
 }
 
-#abacusFTROU input.operator {
+input.operator {
 	background: rgb(176, 176, 176); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
 		rgba(108, 108, 108, 1) 100% ); /* FF3.6+ */
@@ -94,7 +94,7 @@ div#specialFuncs>input {
 	width: 14.67%;
 }
 
-#abacusFTROU output {
+output {
 	margin: 1% 8.25% 3%;
 	display: block;
 	text-align: right;
@@ -117,15 +117,4 @@ div#specialFuncs>input {
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%,
 		rgba(229, 229, 229, 1) 100% ); /* W3C */
 
-}
-
-/*
-When I'm looking at this on a desktop, I don't want it to be fullscreen. 
-Also, you could embed this thing on your website.
-*/
-@media all and (min-width: 800px) {
-	form#abacusFTROU {
-		width: 300px;
-		height: 400px;
-	}
 }
