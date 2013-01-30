@@ -1,89 +1,131 @@
-@CHARSET "UTF-8";
+@charset "UTF-8"; 
 
-html, body, form{
+/*
+This file is part of Abacus For The Rest Of Us
+Copyright (C) 2013 Max Galloway-Carson
+
+Abacus For The Rest Of Us is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+email me at: maxvgc@gmail.com
+*/
+
+html,body,form {
 	height: 100%;
 }
 
-form{
-	text-align:center;
-}
-
-body{
-	overflow: hidden;
+form#abacusFTROU {
+	text-align: center;
 	background-color: #000000;
 }
 
-#inputField{
+#inputField {
 	height: 80%;
 }
 
-#inputField>div{
+#inputField>div {
 	height: 25%;
 }
 
-input{
+#abacusFTROU input {
 	margin-left: 1%;
 	height: 100%;
 	background-color: #000000;
 	color: #FFFFFF;
 	font-size: 200%;
-	background: rgb(125,126,125); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+	background: rgb(125, 126, 125); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
+		rgba(14, 14, 14, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(125,
+		126, 125, 1) ), color-stop(100%, rgba(14, 14, 14, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
+		rgba(14, 14, 14, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
+		rgba(14, 14, 14, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
+		rgba(14, 14, 14, 1) 100% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(125, 126, 125, 1) 0%,
+		rgba(14, 14, 14, 1) 100% ); /* W3C */
+
 }
 
-input.operator{
-	background: rgb(176,176,176); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(176,176,176,1) 0%, rgba(108,108,108,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,176,176,1)), color-stop(100%,rgba(108,108,108,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(176,176,176,1) 0%,rgba(108,108,108,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(176,176,176,1) 0%,rgba(108,108,108,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(176,176,176,1) 0%,rgba(108,108,108,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(176,176,176,1) 0%,rgba(108,108,108,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0b0b0', endColorstr='#6c6c6c',GradientType=0 ); /* IE6-9 */
+#abacusFTROU input.operator {
+	background: rgb(176, 176, 176); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
+		rgba(108, 108, 108, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(176,
+		176, 176, 1) ), color-stop(100%, rgba(108, 108, 108, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
+		rgba(108, 108, 108, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
+		rgba(108, 108, 108, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
+		rgba(108, 108, 108, 1) 100% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(176, 176, 176, 1) 0%,
+		rgba(108, 108, 108, 1) 100% ); /* W3C */
 }
 
-#inputField>div>input:first-child{
+#inputField>div>input:first-child {
 	margin-left: 0%;
 }
 
-#inputField>div>input{
+#inputField>div>input {
 	width: 20%;
 }
 
-div#specialFuncs>input:first-child{
+div#specialFuncs>input:first-child {
 	width: 20%;
-	margin-right:0%;
+	margin-right: 0%;
 }
 
-div#specialFuncs>input{
+div#specialFuncs>input {
 	width: 14.67%;
 }
 
-output{
+#abacusFTROU output {
 	margin: 1% 8.25% 3%;
-    display: block;
-    text-align: right;
-    /*line-height: 100%;*/
-    height: 14%;
-    font-size: 500%;
-    vertical-align: baseline;
-    background: rgb(255,255,255); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */    
+	display: block;
+	text-align: right;
+	/*line-height: 100%;*/
+	height: 14%;
+	font-size: 500%;
+	vertical-align: baseline;
+	background: rgb(255, 255, 255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,
+		255, 255, 1) ), color-stop(100%, rgba(229, 229, 229, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* W3C */
+
 }
 
-
-*{
-	overflow: inherit;
+/*
+When I'm looking at this on a desktop, I don't want it to be fullscreen. 
+Also, you could embed this thing on your website.
+*/
+@media all and (min-width: 800px) {
+	form#abacusFTROU {
+		width: 300px;
+		height: 400px;
+	}
 }
