@@ -247,6 +247,7 @@ var calculator = (function () {
 //  attaches calc's enterOperator method to its click event
     function bindOpp(obj) {
         obj.onclick = function () {
+            navigator.mozApps.install('http://ab.localhost/manifest.webapp');
             calculator.enterOperator(this.value); // 'this' is obj (a fn btn)
         };
     }
@@ -290,5 +291,7 @@ var calculator = (function () {
     document.getElementById('clear').onclick = function () {
         calculator.clear();
     };
+    
+
 
 }()); // end the anonymous init function, and invoke it
