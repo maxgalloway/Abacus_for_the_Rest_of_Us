@@ -291,20 +291,20 @@ var calculator = (function () {
     document.getElementById('clear').onclick = function () {
         calculator.clear();
     };
-    
+
 //  Try to install app in firefox os if it is not already installed
 //  I have no error handlers, and only handle the first success,
 //  because there is nothing to be done in other cases.
-    
+
     request = navigator.mozApps.getSelf();
-    
-    request.onsuccess = function (){
-        if(!request.result) { // not installed yet, try to
-            
+
+    request.onsuccess = function () {
+        if (!request.result) { // not installed yet, try to
+
             navigator.mozApps.install(location.protocol + '//' + location.host + '/manifest.webapp');
-            
+
         } // otherwise the app is already installed, so do nothing
     };
-    
+
 
 }()); // end the anonymous init function, and invoke it
