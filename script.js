@@ -309,7 +309,7 @@ var calculator = (function () {
             
         } else { 
             console.log('already installed');
-            navigator.mozApps.mgmt.launch(location.protocol + '//' + location.host + ')
+            navigator.mozApps.mgmt.launch(location.protocol + '//' + location.host + ');
             }
         
         request.onerror = function () {
