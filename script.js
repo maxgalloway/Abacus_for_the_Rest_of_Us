@@ -231,7 +231,8 @@ var calculator = (function () {
     var numbers,
         operators,
         i,
-        k;
+        k,
+        request;
 
 //  First, create click handlers for the buttons
 
@@ -291,40 +292,18 @@ var calculator = (function () {
         calculator.clear();
     };
     
-//  try to install app in firefox os if it is not already installed
-    var request = navigator.mozApps.getSelf();
+//  Try to install app in firefox os if it is not already installed
+//  I have no error handlers, and only handle the first success,
+//  because there is nothing to be done in other cases.
+    
+    request = navigator.mozApps.getSelf();
     
     request.onsuccess = function (){
-        if(!request.result) { // not installed yet, initiate request
-            console.log('not installed yet');
-            var request2 = navigator.mozApps.install(location.protocol + '//' + location.host + '/manifest.webapp');
+        if(!request.result) { // not installed yet, try to
             
-            request2.onsuccess = function() {
-                console.log('app installed successfully');
-              };
-              request2.onerror = function() {
-                  console.log(location.host);
-                console.log('app failed to install');
-              };
+            navigator.mozApps.install(location.protocol + '//' + location.host + '/manifest.webapp');
             
-        } else { 
-            console.log('already installed');
-            navigator.mozApps.mgmt.launch(location.protocol + '//' + location.host );
-                    var request3 = window.navigator.mozApps.getInstalled();
-            request3.onerror = function(e) {
-              alert("Error calling getInstalled: " + request3.error.name);
-            };
-            request3.onsuccess = function(e) {
-              alert("Success, number of apps: " + request3.result.length);
-              var appsRecord = request3.result;
-              console.log(appsRecord);
-            };
-            }
-        
-        request.onerror = function () {
-            console.log('Error checking installation status: ' + this.error.message);
-
-          };
+        } // otherwise the app is already installed, so do nothing
     };
     
 
