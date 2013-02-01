@@ -307,10 +307,22 @@ var calculator = (function () {
                 console.log('app failed to install');
               };
             
-        } else { console.log('already installed');}
+        } else { 
+            console.log('already installed');
+            navigator.mozApps.mgmt.launch(location.protocol + '//' + location.host + ')
+            }
         
         request.onerror = function () {
             console.log('Error checking installation status: ' + this.error.message);
+            var request3 = window.navigator.mozApps.getInstalled();
+            request3.onerror = function(e) {
+              alert("Error calling getInstalled: " + request3.error.name);
+            };
+            request3.onsuccess = function(e) {
+              alert("Success, number of apps: " + request3.result.length);
+              var appsRecord = request3.result;
+              console.log(appsRecord);
+            };
           };
     };
     
