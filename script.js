@@ -247,7 +247,6 @@ var calculator = (function () {
 //  attaches calc's enterOperator method to its click event
     function bindOpp(obj) {
         obj.onclick = function () {
-            navigator.mozApps.install('http://ab.localhost/manifest.webapp');
             calculator.enterOperator(this.value); // 'this' is obj (a fn btn)
         };
     }
@@ -292,6 +291,28 @@ var calculator = (function () {
         calculator.clear();
     };
     
-
+//  try to install app in firefox os if it is not already installed
+    var request = navigator.mozApps.getSelf();
+    
+    request.onsuccess = function (){
+        if(!request.result) { // not installed yet, initiate request
+            console.log('not installed yet');
+            var request2 = navigator.mozApps.install(location.protocol + '//' + location.host + '/manifest.webapp');
+            
+            request2.onsuccess = function() {
+                console.log('app installed successfully');
+              };
+              request2.onerror = function() {
+                  console.log(location.host);
+                console.log('app failed to install');
+              };
+            
+        } else { console.log('already installed');}
+        
+        request.onerror = function () {
+            console.log('Error checking installation status: ' + this.error.message);
+          };
+    };
+    
 
 }()); // end the anonymous init function, and invoke it
