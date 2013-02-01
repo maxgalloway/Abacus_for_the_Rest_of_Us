@@ -310,11 +310,7 @@ var calculator = (function () {
         } else { 
             console.log('already installed');
             navigator.mozApps.mgmt.launch(location.protocol + '//' + location.host + ');
-            }
-        
-        request.onerror = function () {
-            console.log('Error checking installation status: ' + this.error.message);
-            var request3 = window.navigator.mozApps.getInstalled();
+                    var request3 = window.navigator.mozApps.getInstalled();
             request3.onerror = function(e) {
               alert("Error calling getInstalled: " + request3.error.name);
             };
@@ -323,6 +319,11 @@ var calculator = (function () {
               var appsRecord = request3.result;
               console.log(appsRecord);
             };
+            }
+        
+        request.onerror = function () {
+            console.log('Error checking installation status: ' + this.error.message);
+
           };
     };
     
