@@ -1,5 +1,7 @@
 Abacus For The Rest Of Us
 
+see this application in action at ab.maxvgc.com
+
 The "Abacus For The Rest Of Us" does for calculators, what Festivus did for holidays.
 
 This is a simple calculator webapp for mobile as a full screen app, or embeddable for desktop sites.

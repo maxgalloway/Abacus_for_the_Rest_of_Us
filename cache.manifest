@@ -4,9 +4,10 @@ CACHE MANIFEST
 CACHE:
 /
 /index.html
-/reset.css
-/style.css
-/script.js
+/css/reset.css
+/css/style.css
+/js/calculator.js
+/js/setup.js
 
 /img/128.png
 /img/16.png
