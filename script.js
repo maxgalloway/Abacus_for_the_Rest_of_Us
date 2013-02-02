@@ -4,8 +4,9 @@
  * 
  * @author Max Galloway-Carson
  * @version 1.0
+ * @module calculator
  * 
- * Note that I will be using yuidoc throughout
+ * I will be using yuidoc's documentation syntax throughout
  * http://yui.github.com/yuidoc/syntax/index.html
  * 
  * This file is part of Abacus For The Rest Of Us Copyright (C) 2013 Max
@@ -27,7 +28,7 @@
  * email me at: maxvgc@gmail.com
  */
 
-var calculator = (function() {
+var calculator = (function () {
 
     'use strict';
 
@@ -36,6 +37,8 @@ var calculator = (function() {
     /**
      * model pseudoclass is an internal representation of the calculator's
      * state.
+     * 
+     * @class model
      */
     model = {
 
@@ -85,7 +88,7 @@ var calculator = (function() {
          *            operate the operator that was pressed
          * @return {String} Returns the state to show to user.
          */
-        evaluate : function(operate) {
+        evaluate : function (operate) {
 
             // Special condition if there has not been output yet.
 
@@ -141,11 +144,12 @@ var calculator = (function() {
          * internally.
          * 
          * @method update
-         * @param {String} lastDigit: the value of the button being pressed
+         * @param {String}
+         *            lastDigit: the value of the button being pressed
          * @return {String} Returns the state to show to user.
          */
 
-        update : function(lastDigit) {
+        update : function (lastDigit) {
 
             // wipe out display to prevent leading zero
             if (this.temp === '0') {
@@ -165,7 +169,7 @@ var calculator = (function() {
          * @method reset
          * @return {Number} zero: the blank screen
          */
-        reset : function() {
+        reset : function () {
             this.tally = 0;
             this.operator = '+';
             this.temp = '0';
@@ -177,6 +181,8 @@ var calculator = (function() {
 
     /**
      * view is the representation of the screen.
+     * 
+     * @class view
      */
     view = {
 
@@ -198,7 +204,7 @@ var calculator = (function() {
          * @param {any}
          * @return {null}
          */
-        output : function(val) {
+        output : function (val) {
 
             this.display.innerHTML = val;
             return;
@@ -208,75 +214,125 @@ var calculator = (function() {
          * into new display.
          * 
          * @method setDisplay
-         * @param {Object} node that will be new display
-         * @return {null}
+         * @param {Object}
+         *            node that will be new display
+         * @return {Boolean} indicate success of operation
          */
-        setDisplay : function(newScreen) { // function
+        setDisplay : function (newScreen) { // function
 
             if (typeof newScreen === 'object') {
 
                 newScreen.innerHTML = this.display.innerHTML;
 
                 this.display = newScreen;
+
+                return true;
+
             }
 
-            return;
+            return false;
         }
     }; // end view
 
-    // These are the calculator's publicly facing methods.
-    // They should be consided the controller.
-
-    // Enter number is called when a user presses a digit, and takes that
-    // digit as a param. If possible, enterNumber will pass that digit
-    // to the inner calculator's update method.
-
+    /**
+     * These are the calculator's publicly facing methods. Together, the
+     * constitute the controller.
+     * 
+     * @class controller
+     */
     controller = {
-        enterNumber : function(num) {
+
+        /**
+         * Enter number is called when a user presses a digit, and takes that
+         * digit as a param. If possible, enterNumber will pass that digit to
+         * the inner calculator's update method.
+         * 
+         * @method enterNumber
+         * @param {String}
+         *            num is a string representing a number.
+         * 
+         * @return {String} the value to display as a result of this action,
+         *         empty string denotes failure
+         */
+        enterNumber : function (num) {
+
+            var retVal = '';
 
             if (typeof model.update === 'function') {
 
                 // Pass response from model's update method to
                 // the view
-                view.output(model.update(num));
+                retVal = model.update(num);
+                view.output(retVal);
             }
+
+            return retVal;
         },
 
-        // Enter operator is called when a user presses an operator,
-        // and takes that operator as a param. If possible, enterOperator
-        // will pass that operator to the inner calculator's
-        // evaluate method.
+        /**
+         * Enter operator is called when a user presses an operator, and takes
+         * that operator as a param. If possible, enterOperator will pass that
+         * operator to the inner calculator's evaluate method.
+         * 
+         * @method enterOperator
+         * @param {String}
+         *            opp is a string representing a calculator function
+         * @return {String} the value to display as a result of this action,
+         *         empty string denotes failure
+         */
+        enterOperator : function (opp) {
 
-        enterOperator : function(opp) {
+            var retVal = '';
 
             if (typeof model.evaluate === 'function') {
 
                 // Pass response from model's evaluate method to
                 // the view
-                view.output(model.evaluate(opp));
+
+                retVal = model.evaluate(opp);
+                view.output(retVal);
             }
+
+            return retVal;
         },
 
-        // Clear is called when a user presses the clear button, and
-        // takes no params. If possible, clear will call the inner
-        // calculator's reset method.
+        /**
+         * Clear is called when a user presses the clear button, and takes no
+         * params. If possible, clear will call the inner calculator's reset
+         * method.
+         * 
+         * @method clear
+         * @return {String} the value to display as a result of this action,
+         *         empty string denotes failure
+         */
+        clear : function () {
 
-        clear : function() {
+            var retVal = '';
 
             if (typeof model.reset === 'function') {
 
                 // Pass response from model's reset method to
                 // the view
-                view.output(model.reset());
+                retVal = model.reset();
+                view.output(retVal);
             }
+
+            return retVal;
         },
 
-        // Set Display takes an object, and set it to be the
-        // Calculator's new output field.
+        /**
+         * Set Display takes an object, and set it to be the Calculator's new
+         * output field.
+         * 
+         * @method setDisplay
+         * @param {Object}
+         *            a dom node that will be the calculator's new display
+         * @return {Boolean} indicates success of operation
+         * 
+         */
+        setDisplay : function (obj) {
 
-        setDisplay : function(obj) {
-
-            view.setDisplay(obj);
+            return view.setDisplay(obj);
         }
     };
 
@@ -284,32 +340,47 @@ var calculator = (function() {
 
 }()); // end calculator definition
 
-// This is where the setup for the calculator happens. It's all
-// inside an anonymous function, so the vars and the functions
-// will go away at the end.
-
-(function() {
+/**
+ * This is where the setup for the calculator happens. It's all inside an
+ * anonymous function, so the vars and the functions will go away at the end.
+ */
+(function () {
 
     'use strict';
 
     var numbers, operators, i, k, request;
-console.log(window.applicationCache.status);
+
     // First, create click handlers for the buttons
 
-    // function takes a number button dom element, and
-    // attaches calc's enterNumber method to its click event
+    /**
+     * bundNum takes a number button dom element, and attaches calc's
+     * enterNumber method to its click event
+     * 
+     * @param {Object}
+     *            obj is a dom node of a number button
+     * @return {Boolean} just true
+     */
     function bindNum(obj) {
-        obj.onclick = function() {
+        obj.onclick = function () {
             calculator.enterNumber(this.value); // 'this' is obj (a num btn)
         };
+
+        return true;
     }
 
-    // function takes a function button dom element, and
-    // attaches calc's enterOperator method to its click event
+    /**
+     * bundOpp takes a function button dom element, and attaches calc's
+     * enterOperator method to its click event
+     * 
+     * @param {Object} obj is a dom node of a function button
+     * @return {Boolean} just true
+     */
     function bindOpp(obj) {
-        obj.onclick = function() {
+        obj.onclick = function () {
             calculator.enterOperator(this.value); // 'this' is obj (a fn btn)
         };
+
+        return true;
     }
 
     // Second, run setup routine, in which page elements are bound to
@@ -318,7 +389,7 @@ console.log(window.applicationCache.status);
     // Start by calling the calcuator's init method, passing
     // in an output element to be the display.
 
-    /* jslint browser:true */
+    /*jslint browser:true*/
 
     calculator.setDisplay(document.getElementById('out'));
 
@@ -348,7 +419,7 @@ console.log(window.applicationCache.status);
 
     // lastly, bind the clear function to the clear buttons' click event
 
-    document.getElementById('clear').onclick = function() {
+    document.getElementById('clear').onclick = function () {
         calculator.clear();
     };
 
@@ -358,23 +429,16 @@ console.log(window.applicationCache.status);
 
     request = navigator.mozApps.getSelf();
 
-    request.onsuccess = function() {
-        if (!request.result) { // not installed yet, try to
+    request.onsuccess = function () {
 
-            var req2 = navigator.mozApps.install(location.protocol + '//' + location.host
+        // not installed yet, try to
+        if (!request.result && typeof navigator.mozApps.install === 'function') {
+
+            navigator.mozApps.install(location.protocol + '//' + location.host
                     + '/manifest.webapp');
-            
-            req2.onerror = function (a) {
-                console.log('did not install');
-                console.log(a);
-            }
-            
-            req2.onsuccess = function (a){
-                console.log('we have installed.');
-                console.log(a);
-            }
 
-        } // otherwise the app is already installed, so do nothing
+        } // otherwise the app is either already installed or cannot be, so do
+        // nothing
     };
 
 }()); // end the anonymous init function, and invoke it
