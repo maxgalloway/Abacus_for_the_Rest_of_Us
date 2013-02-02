@@ -1,19 +1,20 @@
 CACHE MANIFEST
-# v1.1
+# v1.0
 
 CACHE:
-index.html
-reset.css
-style.css
-script.js
+/
+/index.html
+/reset.css
+/style.css
+/script.js
 
-img/128.png
-img/16.png
-img/256.png
-img/30.png
-img/32.png
-img/48.png
-img/60.png
-img/64.png
+/img/128.png
+/img/16.png
+/img/256.png
+/img/30.png
+/img/32.png
+/img/48.png
+/img/60.png
+/img/64.png
 
 
