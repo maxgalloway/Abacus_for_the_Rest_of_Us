@@ -86,7 +86,7 @@ input.operator {
 	width: 20%;
 }
 
-div#specialFuncs>input:first-child {
+div#specialFuncs>input:last-child {
 	width: 20%;
 	margin-right: 0%;
 }
