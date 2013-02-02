@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v1.0
+# v1.1
 
 CACHE:
 index.html
@@ -7,13 +7,13 @@ reset.css
 style.css
 script.js
 
-128.png
-16.png
-256.png
-30.png
-32.png
-48.png
-60.png
-64.png
+img/128.png
+img/16.png
+img/256.png
+img/30.png
+img/32.png
+img/48.png
+img/60.png
+img/64.png
 
 

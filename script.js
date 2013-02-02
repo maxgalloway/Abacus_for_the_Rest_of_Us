@@ -293,7 +293,7 @@ var calculator = (function() {
     'use strict';
 
     var numbers, operators, i, k, request;
-
+console.log(window.applicationCache.status);
     // First, create click handlers for the buttons
 
     // function takes a number button dom element, and
@@ -361,8 +361,18 @@ var calculator = (function() {
     request.onsuccess = function() {
         if (!request.result) { // not installed yet, try to
 
-            navigator.mozApps.install(location.protocol + '//' + location.host
+            var req2 = navigator.mozApps.install(location.protocol + '//' + location.host
                     + '/manifest.webapp');
+            
+            req2.onerror = function (a) {
+                console.log('did not install');
+                console.log(a);
+            }
+            
+            req2.onsuccess = function (a){
+                console.log('we have installed.');
+                console.log(a);
+            }
 
         } // otherwise the app is already installed, so do nothing
     };
