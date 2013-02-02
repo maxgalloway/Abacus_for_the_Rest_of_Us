@@ -91,9 +91,9 @@ var calculator = (function () {
          */
         evaluate : function (operate) {
 
-            // Special condition if there has not been output yet.
-
             var tempN = parseFloat(this.temp);
+
+            // Special condition if there has not been output yet.            
 
             if (this.isClear) {
 
