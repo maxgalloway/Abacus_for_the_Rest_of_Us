@@ -3,13 +3,13 @@
  * anonymous function, so the vars and the functions will go away at the end.
  */
 
-/*global calculator:false*/
+/*global calculator:false , localStorage:false*/
 
 (function () {
 
     'use strict';
 
-    var numbers, operators, i, k, request;
+    var numbers, operators, i, k;
 
     // First, create click handlers for the buttons
 
@@ -84,22 +84,46 @@
         calculator.clear();
     };
 
-    // Try to install app in firefox os if it is not already installed
-    // I have no error handlers, and only handle the first success,
-    // because there is nothing to be done in other cases.
+    /**
+     * Try to install app from firefox if it is not already installed.
+     * 
+     * Note that I have no error handlers, and only handle the first success,
+     * because there is nothing to be done in other cases. To do this, the
+     * special firefox function and localStorage need to be available.
+     * 
+     * From https://developer.mozilla.org/en-US/docs/DOM/Apps.getSelf Note: Due
+     * to Bug 806597, request.result incorrectly returns null even when an app
+     * is running on Desktop and Firefox for Android.
+     * 
+     * Because of this bug, I will defer to a flag that I will set in
+     * localStorage to inform me if the app is already installed.
+     */
+    (function () {
 
-    request = navigator.mozApps.getSelf();
+        var request, req2;
 
-    request.onsuccess = function () {
+        if (typeof navigator.mozApps.getSelf === 'function'
+                && typeof navigator.mozApps.install === 'function'
+                && localStorage
+                && localStorage.getItem('alreadyInstalled') !== '1') {
 
-        // not installed yet, try to
-        if (!request.result && typeof navigator.mozApps.install === 'function') {
+            request = navigator.mozApps.getSelf();
 
-            navigator.mozApps.install(location.protocol + '//' + location.host
-                    + '/manifest.webapp');
+            request.onsuccess = function () {
+                // not installed yet, try to
+                if (!request.result) {
 
-        } // otherwise the app is either already installed or cannot be, so do
-        // nothing
-    };
+                    req2 = navigator.mozApps.install(location.protocol + '//' + location.host
+                            + '/manifest.webapp');
+
+                    req2.onsuccess = function () {
+                        localStorage.setItem('alreadyInstalled', '1');
+                    };
+
+                } // otherwise the app is either already installed or cannot 
+                  // be, so do nothing
+            };
+        }
+    }());
 
 }()); // end the anonymous init function, and invoke it
