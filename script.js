@@ -26,6 +26,7 @@
  * along with this program. If not, see <http:*www.gnu.org/licenses/>.
  * 
  * email me at: maxvgc@gmail.com
+ * source code: https://github.com/maxvgc/abacus-for-the-rest-of-us
  */
 
 var calculator = (function () {

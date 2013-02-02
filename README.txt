@@ -1,6 +1,6 @@
 Abacus For The Rest Of Us
 
-The Abacus For The Rest Of Us does for calculators, what Festivus did for holidays.
+The "Abacus For The Rest Of Us" does for calculators, what Festivus did for holidays.
 
 This is a simple calculator webapp for mobile as a full screen app, or embeddable for desktop sites.
 
@@ -8,7 +8,7 @@ This webapp is:
 W3C valid html
 W3C valid css
 Jslint compliant
-open source -- github.com/maxvgc
+open source -- https://github.com/maxvgc/abacus-for-the-rest-of-us
 
 This file is part of Abacus For The Rest Of Us
 Copyright (C) 2013 Max Galloway-Carson
@@ -27,3 +27,4 @@ You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 email me at: maxvgc@gmail.com
+source code: https://github.com/maxvgc/abacus-for-the-rest-of-us
