@@ -16,7 +16,7 @@
  * along with this program. If not, see <http:*www.gnu.org/licenses/>.
  * 
  * email me at: maxvgc@gmail.com
- * source code: https://github.com/maxvgc/abacus-for-the-rest-of-us
+ * source code: https://github.com/maxvgc/Abacus_for_the_Rest_of_Us
  */
 module( "calculator module", {
     setup: function() {

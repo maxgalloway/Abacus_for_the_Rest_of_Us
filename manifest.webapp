@@ -1,6 +1,6 @@
 {
 	"appcache_path": "/cache.manifest",
-	"description": "The \"Abacus For The Rest Of Us\" does for calculators, what Festivus did for holidays.\n\nThis webapp is:\nW3C valid html\nW3C valid css\nJslint compliant\nopen source -- github.com/maxvgc",
+	"description": "The \"Abacus For The Rest Of Us\" does for calculators, what Festivus did for holidays.\n\nThis webapp is:\nW3C valid html\nW3C valid css\nJslint compliant\nopen source -- https://github.com/maxvgc/Abacus_for_the_Rest_of_Us",
 	"default_locale": "en",
 	"developer": {
 		"name": "Max Galloway-Carson",
