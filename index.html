@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" manifest="cache.manifest">
 
-<head>
-<meta charset="utf-8" />
-
+	<head>
+		<meta charset="utf-8" />
 <!--
 This file is part of Abacus For The Rest Of Us
 Copyright (C) 2013 Max Galloway-Carson
@@ -24,60 +23,59 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 email me at: maxvgc@gmail.com
 source code: https://github.com/maxvgc/abacus-for-the-rest-of-us
 -->
+		<title>Abacus For The Rest Of Us</title>
 
-<title>Abacus For The Rest Of Us</title>
+		<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	</head>
 
-<link rel="stylesheet" type="text/css" href="/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-</head>
+	<body>
 
-<body>
-
-	<form>
-		<!-- a wrapper for the calculator -->
-
-		<!-- the calculator's "screen" -->
-		<output name="out" id="out">0</output>
-
-		<div id="inputField">
-			<!-- The number field. -->
-			<div>
-				<input type="button" value="7" class="number" /> 
-				<input type="button" value="8" class="number" />
-				<input type="button" value="9" class="number" />
-				<input type="button" value="+" class="operator" />
+		<form>
+			<!-- a wrapper for the calculator -->
+	
+			<!-- the calculator's "screen" -->
+			<output name="out" id="out">0</output>
+	
+			<div id="inputField">
+				<!-- The number field. -->
+				<div>
+					<input type="button" value="7" class="number" /> 
+					<input type="button" value="8" class="number" />
+					<input type="button" value="9" class="number" />
+					<input type="button" value="+" class="operator" />
+				</div>
+	
+				<div>
+					<input type="button" value="4" class="number" />
+					<input type="button" value="5" class="number" />
+					<input type="button" value="6" class="number" />
+					<input type="button" value="-" class="operator" />
+				</div>
+	
+				<div>
+					<input type="button" value="1" class="number" />
+					<input type="button" value="2" class="number" />
+					<input type="button" value="3" class="number" />
+					<input type="button" value="x" class="operator" />
+				</div>
+	
+				<div id="specialFuncs">
+					<input type="button" value="C" id="clear" />
+					<input type="button" value="0" class="number" />
+					<input type="button" value="." class="number" />
+					<input type="button" value="=" class="operator" id="equals" />
+					<input type="button" value="/" class="operator" />
+				</div>
+	
 			</div>
-
-			<div>
-				<input type="button" value="4" class="number" />
-				<input type="button" value="5" class="number" />
-				<input type="button" value="6" class="number" />
-				<input type="button" value="-" class="operator" />
-			</div>
-
-			<div>
-				<input type="button" value="1" class="number" />
-				<input type="button" value="2" class="number" />
-				<input type="button" value="3" class="number" />
-				<input type="button" value="x" class="operator" />
-			</div>
-
-			<div id="specialFuncs">
-				<input type="button" value="C" id="clear" />
-				<input type="button" value="0" class="number" />
-				<input type="button" value="." class="number" />
-				<input type="button" value="=" class="operator" id="equals" />
-				<input type="button" value="/" class="operator" />
-			</div>
-
-		</div>
-		<!-- end number field -->
-
-	</form>
-	<!-- end calculator -->
-
-	<script type="text/javascript" src="/js/calculator.js"></script>
-	<script type="text/javascript" src="/js/setup.js"></script>
-
-</body>
+			<!-- end number field -->
+	
+		</form>
+		<!-- end calculator -->
+	
+		<script type="text/javascript" src="/js/calculator.js"></script>
+		<script type="text/javascript" src="/js/setup.js"></script>
+	
+	</body>
 </html>

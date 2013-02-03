@@ -119,7 +119,10 @@ var calculator = (function () {
                     break;
 
                 case '/':
-                    this.tally /= tempN;
+
+                    // divide and round to three decimals
+
+                    this.tally = Math.round((1000 * this.tally) / tempN) / 1000;
                     break;
 
                 }
