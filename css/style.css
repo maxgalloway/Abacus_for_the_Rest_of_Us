@@ -32,7 +32,9 @@ form {
 }
 
 #inputField {
-	height: 80%;
+	height: 76%;
+	margin-top: 2%;
+	margin-bottom: 2%;
 }
 
 #inputField>div {
@@ -40,7 +42,7 @@ form {
 }
 
 input {
-	margin-left: 1%;
+	margin-left: 5%;
 	height: 100%;
 	background-color: #000000;
 	color: #FFFFFF;
@@ -93,15 +95,16 @@ div#specialFuncs>input:last-child {
 }
 
 div#specialFuncs>input {
-	width: 14.67%;
+	width: 15.67%;
+	margin-left: 3%;
 }
 
 output {
-	margin: 1% 8.25% 3%;
+	margin: 2% 2.5%;
 	display: block;
 	text-align: right;
-	/*line-height: 100%;*/
-	height: 14%;
+	line-height: 100%;
+	height: 16%;
 	font-size: 500%;
 	vertical-align: baseline;
 	background: rgb(255, 255, 255); /* Old browsers */
