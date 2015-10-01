@@ -1,7 +1,7 @@
 CACHE MANIFEST
-# v1.0
+# v1.0.1
 #This file is part of Abacus For The Rest Of Us
-#Copyright (C) 2013 Max Galloway-Carson
+#Copyright (C) 2015 Max Galloway
 #
 #Abacus For The Rest Of Us is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
@@ -16,8 +16,8 @@ CACHE MANIFEST
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-#email me at: maxvgc@gmail.com
-#source code: https://github.com/maxvgc/Abacus_for_the_Rest_of_Us
+#email me at: webmaster@pwipw.com
+#source code: https://github.com/maxgalloway/Abacus_for_the_Rest_of_Us
 
 CACHE:
 /

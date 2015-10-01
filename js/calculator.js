@@ -2,15 +2,15 @@
  * The calculator pseudoClass represents a four-function calculator. The
  * following both defines and constructs the singleton calculator object.
  * 
- * @author Max Galloway-Carson
- * @version 1.0
+ * @author Max Galloway
+ * @version 1.0.1
  * @module calculator
  * 
  * I will be using yuidoc's documentation syntax throughout
  * http://yui.github.com/yuidoc/syntax/index.html
  * 
- * This file is part of Abacus For The Rest Of Us Copyright (C) 2013 Max
- * Galloway-Carson
+ * This file is part of Abacus For The Rest Of Us Copyright (C) 2015 Max
+ * Galloway
  * 
  * Abacus For The Rest Of Us is free software: you can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License as
@@ -25,8 +25,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http:*www.gnu.org/licenses/>.
  * 
- * email me at: maxvgc@gmail.com
- * source code: https://github.com/maxvgc/Abacus_for_the_Rest_of_Us
+ * email me at: webmaster@pwipw.com
+ * source code: https://github.com/maxgalloway/Abacus_for_the_Rest_of_Us
  */
 
 var calculator = (function () {
