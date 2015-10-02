@@ -1,4 +1,6 @@
 nbproject
 .project
 *~
+bower_components
+.DS_Store
 

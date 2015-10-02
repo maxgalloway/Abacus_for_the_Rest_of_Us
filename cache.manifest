@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v1.0.1
+# v1.2
 #This file is part of Abacus For The Rest Of Us
 #Copyright (C) 2015 Max Galloway
 #
@@ -22,18 +22,16 @@ CACHE MANIFEST
 CACHE:
 /
 /index.html
-/css/reset.css
-/css/style.css
-/js/calculator.js
-/js/setup.js
+/assets/css/reset.css
+/assets/css/style.css
+/assets/js/calculator.js
+/assets/js/setup.js
 
-/img/128.png
-/img/16.png
-/img/256.png
-/img/30.png
-/img/32.png
-/img/48.png
-/img/60.png
-/img/64.png
-
-
+/assets/img/128.png
+/assets/img/16.png
+/assets/img/256.png
+/assets/img/30.png
+/assets/img/32.png
+/assets/img/48.png
+/assets/img/60.png
+/assets/img/64.png

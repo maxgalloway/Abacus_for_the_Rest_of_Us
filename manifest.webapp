@@ -8,18 +8,18 @@
 	},
 	"fullscreen": "true",
 	"icons": {
-	  "16": "/img/16.png",
-	  "30": "/img/30.png",
-	  "32": "/img/32.png",
-	  "48": "/img/48.png",
-	  "60": "/img/60.png",
-	  "64": "/img/64.png",
-	  "128": "/img/128.png",
-	  "256": "/img/256.png"
+	  "16": "/assets/img/16.png",
+	  "30": "/assets/img/30.png",
+	  "32": "/assets/img/32.png",
+	  "48": "/assets/img/48.png",
+	  "60": "/assets/img/60.png",
+	  "64": "/assets/img/64.png",
+	  "128": "/assets/img/128.png",
+	  "256": "/assets/img/256.png"
 	},
 	"installs_allowed_from": ["*"],
 	"name": "AFTROU",
-	"orientation": ["portrait" , "landscape"],
+	"orientation": ["portrait"],
 	"type": "web",
 	"version": "1.0"
 }
