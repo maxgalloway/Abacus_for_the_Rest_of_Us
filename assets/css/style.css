@@ -21,109 +21,98 @@ email me at: webmaster@pwipw.com
 source code: https://github.com/maxgalloway/Abacus_for_the_Rest_of_Us
 */
 
-html,body,form {
-	height: 100%;
+.container, #calculator, html, body {
+    height: 100%;
+    width: 100%;
 }
 
-form {
-	text-align: center;
-	background-color: #000000;
-	overflow: hidden;
+#theScreen {
+    height: 15%;
 }
 
-#inputField {
-	height: 76%;
-	margin-top: 2%;
-	margin-bottom: 2%;
+#allTheButtons {
+    height: 85%;
 }
 
-#inputField>div {
-	height: 25%;
+#theNumberButtons {
+    height: 100%;
 }
 
-input {
-	margin-left: 5%;
-	height: 100%;
-	background-color: #000000;
-	color: #FFFFFF;
-	font-size: 200%;
-	background: rgb(125, 126, 125); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
-		rgba(14, 14, 14, 1) 100% ); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(125,
-		126, 125, 1) ), color-stop(100%, rgba(14, 14, 14, 1) ) );
-	/* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
-		rgba(14, 14, 14, 1) 100% ); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
-		rgba(14, 14, 14, 1) 100% ); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, rgba(125, 126, 125, 1) 0%,
-		rgba(14, 14, 14, 1) 100% ); /* IE10+ */
-	background: linear-gradient(to bottom, rgba(125, 126, 125, 1) 0%,
-		rgba(14, 14, 14, 1) 100% ); /* W3C */
 
+#theOperatorButtons {
+    height: 100%;
 }
 
-input.operator {
-	background: rgb(176, 176, 176); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
-		rgba(108, 108, 108, 1) 100% ); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(176,
-		176, 176, 1) ), color-stop(100%, rgba(108, 108, 108, 1) ) );
-	/* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
-		rgba(108, 108, 108, 1) 100% ); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
-		rgba(108, 108, 108, 1) 100% ); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, rgba(176, 176, 176, 1) 0%,
-		rgba(108, 108, 108, 1) 100% ); /* IE10+ */
-	background: linear-gradient(to bottom, rgba(176, 176, 176, 1) 0%,
-		rgba(108, 108, 108, 1) 100% ); /* W3C */
+#theNumberButtons .row {
+    height: 25%;
 }
 
-#inputField>div>input:first-child {
-	margin-left: 0%;
+#theOperatorButtons .row {
+    height: 20%;
 }
 
-#inputField>div>input {
-	width: 20%;
+.btnWrapper, .btn {
+    margin: 0;
+    padding: 0;
 }
 
-div#specialFuncs>input:last-child {
-	width: 20%;
-	margin-right: 0%;
+.btnWrapper {
+    height: 100%;
 }
 
-div#specialFuncs>input {
-	width: 15.67%;
-	margin-left: 3%;
+.btn, .btn:hover, .btn:focus {
+    width: 100%;
+    height: 100%;
+    font-size: 500%;
+    color: white;
+    background-color: #303030;
+    border-radius: 0;
 }
 
-output {
-	margin: 2% 2.5%;
-	display: block;
-	text-align: right;
-	line-height: 100%;
-	height: 16%;
-	font-size: 500%;
-	vertical-align: baseline;
-	background: rgb(255, 255, 255); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,
-		255, 255, 1) ), color-stop(100%, rgba(229, 229, 229, 1) ) );
-	/* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
-	background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* W3C */
-
+#theNumberButtons>.row>div {
+    border-left: 1px #606060 solid;
+    border-right: 1px #606060 solid;
 }
 
-*{
-	overflow: inherit;
+#theNumberButtons>.row>div:first-of-type {
+    border-left: none;
+}
+
+#theNumberButtons>.row>div:last-of-type {
+    border-right: none;
+}
+
+#theNumberButtons>.row {
+    border-top: 1px #606060 solid;
+    border-bottom: 1px #606060 solid;
+}
+
+#theNumberButtons>.row:last-of-type {
+    border-bottom: none;
+}
+
+#theNumberButtons>.row:first-of-type {
+    border-top: none;
+}
+
+#theOperatorButtons .btn {
+    background-color: #606060;
+}
+
+#theOperatorButtons>.row {
+    border-top: 1px #000000 solid;
+    border-bottom: 1px #000000 solid;
+}
+
+#theOperatorButtons>.row:last-of-type {
+    border-bottom: none;
+}
+
+#theOperatorButtons>.row:first-of-type {
+    border-top: none;
+}
+
+#out {
+    font-size: 750%;
+    text-align: right;
 }

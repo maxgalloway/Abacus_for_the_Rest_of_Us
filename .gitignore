@@ -2,5 +2,5 @@ nbproject
 .project
 *~
 bower_components
-.DS_Store
-
+.DS_STORE
+.idea

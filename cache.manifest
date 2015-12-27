@@ -22,7 +22,6 @@ CACHE MANIFEST
 CACHE:
 /
 /index.html
-/assets/css/reset.css
 /assets/css/style.css
 /assets/js/calculator.js
 /assets/js/setup.js

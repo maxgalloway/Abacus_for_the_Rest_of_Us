@@ -1,5 +1,5 @@
 /**
- * The calculator pseudoClass represents a four-function calculator. The
+ * The calculator object represents a four-function calculator. The
  * following both defines and constructs the singleton calculator object.
  *
  * @author Max Galloway
@@ -130,12 +130,12 @@ var calculator = (function () {
                             break;
 
                         case 'x':
-                            tally *= tempN;
+//                            multiply by thousands then divide by them to fix a rounding bug
+                            tally = Math.round(((1000 * tally) * (tempN * 1000)) / 1000) / 1000;
                             break;
 
                         case '/':
-
-                            // divide and round to three decimals
+//                          divide and round to three decimals
 
                             tally = Math.round((1000 * tally) / tempN) / 1000;
                             break;
@@ -217,7 +217,7 @@ var calculator = (function () {
              * set display to given number
              *
              * @method output
-             * @param {any} val
+             * @param {String} val
              * @return {String}
              */
             output: function (val) {
@@ -286,7 +286,7 @@ var calculator = (function () {
 
         /**
          * Enter operator is called when a user presses an operator, and takes
-         * that operator as a param. If possible, enterOperator will pass that
+         * that operator as a param. Then, enterOperator will pass that
          * operator to the inner calculator's evaluate method.
          *
          * @method enterOperator
@@ -304,7 +304,12 @@ var calculator = (function () {
                 // the view
 
                 retVal = model.evaluate(opp);
-                view.output(retVal);
+
+                if (opp === '=') {
+                    view.output(retVal);
+                } else {
+                    view.output(opp);
+                }
             }
 
             return retVal;

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/maxgalloway/Abacus_for_the_Rest_of_Us",
   "authors": [
-    "max <max.galloway@abt.com>"
+    "max galloway <webmaster@pwipw.com>"
   ],
   "description": "",
   "main": "",
@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "qunit": "~1.19.0"
+    "qunit": "~1.19.0",
+    "bootstrap": "~3.3.6"
   }
 }

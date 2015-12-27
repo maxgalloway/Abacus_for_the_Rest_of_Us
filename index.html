@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" manifest="cache.manifest">
-
 	<head>
-		<meta charset="utf-8" />
+        <meta charset="utf-8" />
 <!--
 This file is part of Abacus For The Rest Of Us
 Copyright (C) 2015 Max Galloway
@@ -25,57 +24,117 @@ source code: https://github.com/maxgalloway/Abacus_for_the_Rest_of_Us
 -->
 		<title>Abacus For The Rest Of Us</title>
 
-		<link rel="stylesheet" type="text/css" href="/css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
-	</head>
+        <link rel="stylesheet" type="text/css" href="/assets/bower_components/bootstrap/dist/css/bootstrap.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    </head>
 
 	<body>
 
-		<form>
-			<!-- a wrapper for the calculator -->
-	
-			<!-- the calculator's "screen" -->
-			<output name="out" id="out">0</output>
-	
-			<div id="inputField">
-				<!-- The number field. -->
-				<div>
-					<input type="button" value="7" class="number" /> 
-					<input type="button" value="8" class="number" />
-					<input type="button" value="9" class="number" />
-					<input type="button" value="+" class="operator" />
-				</div>
-	
-				<div>
-					<input type="button" value="4" class="number" />
-					<input type="button" value="5" class="number" />
-					<input type="button" value="6" class="number" />
-					<input type="button" value="-" class="operator" />
-				</div>
-	
-				<div>
-					<input type="button" value="1" class="number" />
-					<input type="button" value="2" class="number" />
-					<input type="button" value="3" class="number" />
-					<input type="button" value="x" class="operator" />
-				</div>
-	
-				<div id="specialFuncs">
-					<input type="button" value="C" id="clear" />
-					<input type="button" value="0" class="number" />
-					<input type="button" value="." class="number" />
-					<input type="button" value="=" class="operator" id="equals" />
-					<input type="button" value="/" class="operator" />
-				</div>
-	
-			</div>
+		<form id="calculator">
+
+            <div class="container">
+
+                <div class="row" id="theScreen">
+                    <div class="col-xs-12">
+                        <output name="out" id="out">0</output>
+                    </div>
+                </div>
+
+                <div class="row" id="allTheButtons">
+                    <div class="col-xs-9" id="theNumberButtons">
+
+                        <div class="row">
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="7"/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="8"/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="9"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="4"/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="5"/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="6"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="1"/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="2"/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="3"/>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="."/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn number" value="0"/>
+                            </div>
+                            <div class="col-xs-4 btnWrapper">
+                                <input type="button" class="btn operator" value="=" id="equals" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-3" id="theOperatorButtons">
+                        <div class="row">
+                            <div class="col-xs-12 btnWrapper">
+                                <input type="button" class="btn" value="C" id="clear" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 btnWrapper">
+                                <input type="button" class="btn operator" value="+"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 btnWrapper">
+                                <input type="button" class="btn operator" value="-"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 btnWrapper">
+                                <input type="button" class="btn operator" value="x"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 btnWrapper">
+                                <input type="button" class="btn operator" value="/"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
 			<!-- end number field -->
 	
 		</form>
 		<!-- end calculator -->
-	
-		<script type="text/javascript" src="/js/calculator.js"></script>
-		<script type="text/javascript" src="/js/setup.js"></script>
+        <script type="text/javascript" src="/assets/bower_components/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="/assets/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+		<script type="text/javascript" src="/assets/js/calculator.js"></script>
+		<script type="text/javascript" src="/assets/js/setup.js"></script>
 	
 	</body>
 </html>
