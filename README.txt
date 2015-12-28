@@ -2,13 +2,22 @@ Abacus For The Rest Of Us
 
 The "Abacus For The Rest Of Us" does for calculators, what Festivus did for holidays.
 
-This is a simple calculator webapp for mobile as a full screen app, or embeddable for desktop sites.
-
 This webapp is:
 W3C valid html
 W3C valid css
 Jslint compliant
 open source -- https://github.com/maxgalloway/Abacus_for_the_Rest_of_Us
+
+See it in action: http://abacus.pwipw.com/
+
+To get in running locally, run bower install in the assets directory. Then start a webserver
+with the root of this project as the document root. For example you could do in this directory:
+
+python -m SimpleHTTPServer 8000
+or
+php -S localhost:8000
+
+Then navigate to http://localhost:8000 in your browser.
 
 This file is part of Abacus For The Rest Of Us
 Copyright (C) 2015 Max Galloway

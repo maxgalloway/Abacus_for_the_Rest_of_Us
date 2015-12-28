@@ -22,6 +22,11 @@ CACHE MANIFEST
 CACHE:
 /
 /index.html
+
+/assets/bower_components/bootstrap/dist/css/bootstrap.min.css
+/assets/bower_components/jquery/dist/jquery.min.js
+/assets/bower_components/bootstrap/dist/js/bootstrap.min.js
+
 /assets/css/style.css
 /assets/js/calculator.js
 /assets/js/setup.js
