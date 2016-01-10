@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v1.2
+# v1.2.2
 #This file is part of Abacus For The Rest Of Us
 #Copyright (C) 2015 Max Galloway
 #
@@ -22,11 +22,9 @@ CACHE MANIFEST
 CACHE:
 /
 /index.html
-
 /assets/bower_components/bootstrap/dist/css/bootstrap.min.css
 /assets/bower_components/jquery/dist/jquery.min.js
 /assets/bower_components/bootstrap/dist/js/bootstrap.min.js
-
 /assets/css/style.css
 /assets/js/calculator.js
 /assets/js/setup.js
@@ -39,3 +37,4 @@ CACHE:
 /assets/img/48.png
 /assets/img/60.png
 /assets/img/64.png
+/assets/img/favicon.ico
